@@ -106,7 +106,7 @@ const CurrencyConverter: React.FC = () => {
             <select
               value={fromCurrency}
               onChange={(e) => setFromCurrency(e.target.value)}
-              className="w-full px-4 py-3 pr-1 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-[#0d98ba] text-[#0d171b] font-medium"
+              className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-[#0d98ba] text-[#0d171b] font-medium"
             >
               {currencies.map(currency => (
                 <option key={currency.code} value={currency.code}>

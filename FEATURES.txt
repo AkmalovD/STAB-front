@@ -1,8 +1,8 @@
 FRONT-END:
 
-- change selectors in whole project
-- add animations to landing page
-- fix redirections in "Why Choose SATB" section
+- change selectors in whole project✅
+- add animations to landing page✅
+- fix redirections in "Why Choose SATB" section✅
 - create logic for footer section
 - change testimonials UI
 - change UI in "Schoolarships" section (show less)
@@ -12,6 +12,7 @@ FRONT-END:
 - complete login work-flow
 - create and change logo of STAB
 - add beautiful logo animation 
+- add new page budget planning
 
 BACK-END:
 

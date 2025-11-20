@@ -92,7 +92,7 @@ const ScholarshipFilters: React.FC<ScholarshipFiltersProps> = ({
           <select
             value={filters.country || ''}
             onChange={handleCountryChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-[#0d98ba] transition-colors"
+            className="w-full px-4 py-2 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-[#0d98ba] transition-colors"
           >
             <option value="">All Countries</option>
             {countries.map(country => (
@@ -111,7 +111,7 @@ const ScholarshipFilters: React.FC<ScholarshipFiltersProps> = ({
           <select
             value={filters.studyLevel || ''}
             onChange={handleStudyLevelChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-[#0d98ba] transition-colors"
+            className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-[#0d98ba] transition-colors"
           >
             <option value="">All Levels</option>
             {studyLevels.map(level => (
@@ -130,7 +130,7 @@ const ScholarshipFilters: React.FC<ScholarshipFiltersProps> = ({
           <select
             value={filters.coverage || ''}
             onChange={handleCoverageChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-[#0d98ba] transition-colors"
+            className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-[#0d98ba] transition-colors"
           >
             <option value="">All Types</option>
             {coverageTypes.map(type => (

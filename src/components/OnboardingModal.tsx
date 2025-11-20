@@ -121,7 +121,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onComplete })
                 <select
                   value={profile.targetCountry}
                   onChange={(e) => setProfile({ ...profile, targetCountry: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-transparent text-lg"
+                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-transparent text-lg"
                 >
                   <option value="">Select a country</option>
                   <option value="United Kingdom">🇬🇧 United Kingdom</option>
