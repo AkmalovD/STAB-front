@@ -10,6 +10,8 @@ FRONT-END:
 - add "Back" button in main feature
 - redo UI of main feature, less colors and emojis
 - complete login work-flow
+- create and change logo of STAB
+- add beautiful logo animation 
 
 BACK-END:
 

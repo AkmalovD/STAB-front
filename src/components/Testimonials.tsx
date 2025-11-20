@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 interface Testimonial {
   id: number;
@@ -88,12 +89,24 @@ const Testimonials: React.FC = () => {
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0d171b] mb-4">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold text-[#0d171b] mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             What Our Students Say
-          </h2>
-          <p className="text-lg text-[#4c809a]">
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-[#4c809a]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             Join thousands of students who successfully planned their study abroad journey
-          </p>
+          </motion.p>
         </div>
 
         {/* Testimonial Card */}

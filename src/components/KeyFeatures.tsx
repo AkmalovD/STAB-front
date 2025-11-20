@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion'
 
 interface Feature {
   title: string;
@@ -111,12 +112,24 @@ const KeyFeatures: React.FC = () => {
             <div className="inline-block px-4 py-1.5 bg-white border border-[#0d98ba]/20 rounded-full mb-4">
               <span className="text-sm font-medium text-[#0d98ba]">Platform Features</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0d171b] mb-4">
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-[#0d171b] mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
               Why Choose STAB?
-            </h2>
-            <p className="text-lg text-[#4c809a]">
+            </motion.h2>
+            <motion.p 
+              className="text-lg text-[#4c809a]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
               Everything you need to plan your study abroad journey in one comprehensive platform
-            </p>
+            </motion.p>
           </div>
           
           <button 
@@ -132,7 +145,7 @@ const KeyFeatures: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
               onClick={() => router.push(feature.link)}
               className="group relative bg-white border border-gray-200 rounded-2xl p-8 hover:border-[#0d98ba] transition-all duration-300 cursor-pointer overflow-hidden"
@@ -164,7 +177,7 @@ const KeyFeatures: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
