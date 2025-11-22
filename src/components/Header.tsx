@@ -48,6 +48,9 @@ const Header: React.FC = () => {
           <Link href="/compare" className={getLinkClassName('/compare')}>
             Compare Cities
           </Link>
+          <Link href="/budget" className={getLinkClassName('/budget')}>
+            Budget Planner
+          </Link>
           <Link href="/scholarships" className={getLinkClassName('/scholarships')}>
             Scholarships
           </Link>

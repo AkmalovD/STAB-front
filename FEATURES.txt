@@ -13,6 +13,7 @@ FRONT-END:
 - create and change logo of STAB
 - add beautiful logo animation 
 - add new page budget planning
+- add profile page
 - change logo in browser
 
 BACK-END:

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StudyAbroad Planner - Budget Planner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0f9abd",
+              "background-light": "#f6f8f8",
+              "background-dark": "#101e22",
+              "success": "#7ED321",
+              "warning": "#F5A623",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {
+              "DEFAULT": "0.5rem",
+              "lg": "1rem",
+              "xl": "1.5rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7f1f3] dark:border-b-white/10 px-4 sm:px-10 lg:px-20 py-3 sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center gap-4 text-[#0d191b] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-[#0d191b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">StudyAbroad Planner</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-[#0d191b] dark:text-white/80 text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-[#0d191b] dark:text-white/80 text-sm font-medium leading-normal" href="#">Universities</a>
+<a class="text-[#0d191b] dark:text-white/80 text-sm font-medium leading-normal" href="#">Guides</a>
+<a class="text-primary dark:text-primary text-sm font-bold leading-normal" href="#">Budget Planner</a>
+</div>
+<div class="hidden md:flex items-center gap-4">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Sign In</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTuY-nE29cJW74OcECC5QbU8VwpUfWXUObvFC3FbIffa4VnYTvXfjISoGCXZYx2kwTOYoV7E_sNdK_3ijs6bsTBDt_x6F_sah8TPV8EEeKBpc8oZzrDVEzH7AqrR0h_K9YO-CVDEE8QLj3Us-6IGjfoullKA60iHhKcMsedFaZ-Te3f8z4reP500UAV476HYFTbHSDaB7PxAjZOyEuEgKGmsyAsKJuv0dBQOJo6K3a7zBldDqDyc9J32xFAIlygdeaOPr1HUlvelEc");'></div>
+</div>
+<button class="md:hidden text-[#0d191b] dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="flex-1 px-4 sm:px-10 lg:px-20 py-10">
+<div class="layout-content-container mx-auto flex max-w-7xl flex-col gap-8">
+<div class="flex flex-wrap justify-between gap-4 items-center">
+<div class="flex flex-col gap-2">
+<p class="text-[#0d191b] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">My Study Abroad Budget Planner</p>
+<p class="text-[#4c8a9a] dark:text-white/60 text-base font-normal leading-normal">Plan your finances to make your dream of studying abroad a reality.</p>
+</div>
+<div class="flex items-center gap-2">
+<label class="text-sm font-medium text-[#0d191b] dark:text-white/80" for="currency">Currency:</label>
+<select class="form-select w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d191b] dark:text-white dark:bg-background-dark/50 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#cfe3e7] dark:border-white/20 bg-background-light focus:border-primary/50 h-10 placeholder:text-[#4c8a9a] text-sm" id="currency">
+<option>USD ($)</option>
+<option>EUR (€)</option>
+<option>GBP (£)</option>
+<option>JPY (¥)</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+<div class="lg:col-span-3 flex flex-col gap-8">
+<!-- Income & Savings Card -->
+<div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-sm border border-black/5 dark:border-white/10 p-6">
+<h2 class="text-[#0d191b] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">Income &amp; Savings</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col">
+<p class="text-[#0d191b] dark:text-white/90 text-sm font-medium leading-normal pb-2">Monthly Income</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d191b] dark:text-white dark:bg-background-dark/50 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#cfe3e7] dark:border-white/20 bg-background-light focus:border-primary/50 h-12 placeholder:text-[#4c8a9a] px-4 text-base font-normal leading-normal" placeholder="$1,200" value=""/>
+</label>
+<label class="flex flex-col">
+<p class="text-[#0d191b] dark:text-white/90 text-sm font-medium leading-normal pb-2">Total Savings</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d191b] dark:text-white dark:bg-background-dark/50 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#cfe3e7] dark:border-white/20 bg-background-light focus:border-primary/50 h-12 placeholder:text-[#4c8a9a] px-4 text-base font-normal leading-normal" placeholder="$8,000" value=""/>
+</label>
+<label class="flex flex-col col-span-1 md:col-span-2">
+<p class="text-[#0d191b] dark:text-white/90 text-sm font-medium leading-normal pb-2">Scholarships/Grants</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d191b] dark:text-white dark:bg-background-dark/50 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#cfe3e7] dark:border-white/20 bg-background-light focus:border-primary/50 h-12 placeholder:text-[#4c8a9a] px-4 text-base font-normal leading-normal" placeholder="$2,500" value=""/>
+</label>
+</div>
+</div>
+<!-- Monthly Expenses Card -->
+<div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-sm border border-black/5 dark:border-white/10 p-6">
+<h2 class="text-[#0d191b] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">Monthly Expenses</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col">
+<p class="text-[#0d191b] dark:text-white/90 text-sm font-medium leading-normal pb-2">Tuition Fees (monthly)</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d191b] dark:text-white dark:bg-background-dark/50 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#cfe3e7] dark:border-white/20 bg-background-light focus:border-primary/50 h-12 placeholder:text-[#4c8a9a] px-4 text-base font-normal leading-normal" placeholder="$1,500" value=""/>
+</label>
+<label class="flex flex-col">
+<p class="text-[#0d191b] dark:text-white/90 text-sm font-medium leading-normal pb-2">Rent / Accommodation</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d191b] dark:text-white dark:bg-background-dark/50 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#cfe3e7] dark:border-white/20 bg-background-light focus:border-primary/50 h-12 placeholder:text-[#4c8a9a] px-4 text-base font-normal leading-normal" placeholder="$700" value=""/>
+</label>
+<label class="flex flex-col">
+<p class="text-[#0d191b] dark:text-white/90 text-sm font-medium leading-normal pb-2">Food &amp; Groceries</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d191b] dark:text-white dark:bg-background-dark/50 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#cfe3e7] dark:border-white/20 bg-background-light focus:border-primary/50 h-12 placeholder:text-[#4c8a9a] px-4 text-base font-normal leading-normal" placeholder="$400" value=""/>
+</label>
+<label class="flex flex-col">
+<p class="text-[#0d191b] dark:text-white/90 text-sm font-medium leading-normal pb-2">Transport</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d191b] dark:text-white dark:bg-background-dark/50 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#cfe3e7] dark:border-white/20 bg-background-light focus:border-primary/50 h-12 placeholder:text-[#4c8a9a] px-4 text-base font-normal leading-normal" placeholder="$80" value=""/>
+</label>
+<label class="flex flex-col">
+<p class="text-[#0d191b] dark:text-white/90 text-sm font-medium leading-normal pb-2">Leisure &amp; Entertainment</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d191b] dark:text-white dark:bg-background-dark/50 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#cfe3e7] dark:border-white/20 bg-background-light focus:border-primary/50 h-12 placeholder:text-[#4c8a9a] px-4 text-base font-normal leading-normal" placeholder="$150" value=""/>
+</label>
+<button class="flex items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-300 dark:border-white/30 h-12 text-gray-500 dark:text-white/60 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xl">add</span>
+<span class="text-sm font-medium">Add Custom Expense</span>
+</button>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 mt-4">
+<button class="flex min-w-[120px] flex-1 sm:flex-none cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Update Budget</span>
+</button>
+<button class="flex min-w-[120px] flex-1 sm:flex-none cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-6 bg-gray-200 dark:bg-white/20 text-[#0d191b] dark:text-white text-base font-medium leading-normal tracking-[0.015em]">
+<span class="truncate">Reset</span>
+</button>
+</div>
+</div>
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Financial Overview Card -->
+<div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-sm border border-black/5 dark:border-white/10 p-6 sticky top-28">
+<h2 class="text-[#0d191b] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-6">Financial Overview</h2>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="flex flex-col gap-1 p-4 rounded-lg bg-primary/10 dark:bg-primary/20">
+<p class="text-sm text-primary dark:text-primary/90 font-medium">Total Income</p>
+<p class="text-2xl font-bold text-[#0d191b] dark:text-white">$1,200/mo</p>
+</div>
+<div class="flex flex-col gap-1 p-4 rounded-lg bg-gray-100 dark:bg-white/10">
+<p class="text-sm text-gray-600 dark:text-white/60 font-medium">Total Expenses</p>
+<p class="text-2xl font-bold text-[#0d191b] dark:text-white">$2,830/mo</p>
+</div>
+</div>
+<div class="flex flex-col gap-1 p-4 rounded-lg bg-warning/20 border border-warning mb-6">
+<div class="flex items-center justify-between">
+<p class="text-sm text-amber-800 dark:text-warning font-medium">Estimated Monthly Balance</p>
+<span class="material-symbols-outlined text-amber-800 dark:text-warning">warning</span>
+</div>
+<p class="text-3xl font-bold text-amber-800 dark:text-warning">-$1,630</p>
+<p class="text-xs text-amber-700 dark:text-warning/80">You have a projected deficit.</p>
+</div>
+<!-- Success state example -->
+<!-- <div class="flex flex-col gap-1 p-4 rounded-lg bg-success/20 border border-success mb-6">
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-sm text-green-800 font-medium">Estimated Monthly Balance</p>
+                                        <span class="material-symbols-outlined text-green-800">check_circle</span>
+                                    </div>
+                                    <p class="text-3xl font-bold text-green-800">$250</p>
+                                    <p class="text-xs text-green-700">You have a projected surplus.</p>
+                                </div> -->
+<h3 class="text-[#0d191b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-4">Expense Breakdown</h3>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center text-sm">
+<p class="text-gray-600 dark:text-white/60">Tuition Fees</p>
+<p class="font-medium text-[#0d191b] dark:text-white">$1,500</p>
+</div>
+<div class="w-full bg-gray-200 dark:bg-white/10 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 53%"></div>
+</div>
+<div class="flex justify-between items-center text-sm pt-2">
+<p class="text-gray-600 dark:text-white/60">Rent</p>
+<p class="font-medium text-[#0d191b] dark:text-white">$700</p>
+</div>
+<div class="w-full bg-gray-200 dark:bg-white/10 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 25%"></div>
+</div>
+<div class="flex justify-between items-center text-sm pt-2">
+<p class="text-gray-600 dark:text-white/60">Food &amp; Groceries</p>
+<p class="font-medium text-[#0d191b] dark:text-white">$400</p>
+</div>
+<div class="w-full bg-gray-200 dark:bg-white/10 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 14%"></div>
+</div>
+</div>
+</div>
+<!-- Savings Tips -->
+<div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-sm border border-black/5 dark:border-white/10 p-6">
+<h2 class="text-[#0d191b] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">Savings Tips</h2>
+<div class="flex flex-col gap-3">
+<details class="group">
+<summary class="flex cursor-pointer list-none items-center justify-between rounded-lg p-3 bg-gray-50 dark:bg-white/10 hover:bg-gray-100 dark:hover:bg-white/20">
+<h3 class="font-medium text-sm text-[#0d191b] dark:text-white/90">Saving on Groceries</h3>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-2 p-3 text-sm text-gray-600 dark:text-white/60">Look for student discounts at local supermarkets, buy generic brands, and plan your meals for the week to avoid impulse buys.</p>
+</details>
+<details class="group">
+<summary class="flex cursor-pointer list-none items-center justify-between rounded-lg p-3 bg-gray-50 dark:bg-white/10 hover:bg-gray-100 dark:hover:bg-white/20">
+<h3 class="font-medium text-sm text-[#0d191b] dark:text-white/90">Student Discounts</h3>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-2 p-3 text-sm text-gray-600 dark:text-white/60">Always carry your student ID! Many restaurants, shops, museums, and public transport systems offer significant discounts for students.</p>
+</details>
+<details class="group">
+<summary class="flex cursor-pointer list-none items-center justify-between rounded-lg p-3 bg-gray-50 dark:bg-white/10 hover:bg-gray-100 dark:hover:bg-white/20">
+<h3 class="font-medium text-sm text-[#0d191b] dark:text-white/90">Managing Bank Fees</h3>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-2 p-3 text-sm text-gray-600 dark:text-white/60">Research banks that offer student accounts with low or no international transaction fees. Using a local bank in your host country can often be the cheapest option.</p>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
