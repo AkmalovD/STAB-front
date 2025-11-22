@@ -4,9 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useAuth } from '../auth/AuthContext';
 
 const Header: React.FC = () => {
   const pathname = usePathname();
+  const { user } = useAuth();
 
   const isActiveRoute = (path: string): boolean => {
     return pathname === path;
@@ -66,12 +68,21 @@ const Header: React.FC = () => {
           >
             <span className="truncate">Plan My Journey</span>
           </Link>
-          <Link 
-            href="/login" 
-            className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#e7eff3] text-[#0d171b] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#d1e7f1] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#e7eff3] focus:ring-opacity-50"
-          >
-            <span className="truncate">Login</span>
-          </Link>
+          {user ? (
+            <Link 
+              href="/profile" 
+              className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#e7eff3] text-[#0d171b] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#d1e7f1] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#e7eff3] focus:ring-opacity-50"
+            >
+              <span className="truncate">Profile</span>
+            </Link>
+          ) : (
+            <Link 
+              href="/login" 
+              className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#e7eff3] text-[#0d171b] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#d1e7f1] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#e7eff3] focus:ring-opacity-50"
+            >
+              <span className="truncate">Login</span>
+            </Link>
+          )}
         </div>
       </div>
     </header>
