@@ -5,7 +5,7 @@ import { useAuth } from '../auth/AuthContext';
 import { Camera, Mail, User, Calendar, MapPin, Book, Award, Settings } from 'lucide-react';
 
 const ProfilePage: React.FC = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState({
     displayName: user?.displayName || 'Student Name',
@@ -28,6 +28,16 @@ const ProfilePage: React.FC = () => {
   const handleSave = () => {
     setIsEditing(false);
     // Here you would typically save to database
+  };
+
+  const handleLogOut = async () => {
+    try {
+      await logout();
+      // Redirect to home or login page after logout
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Failed to log out:', error);
+    }
   };
 
   return (
@@ -294,6 +304,14 @@ const ProfilePage: React.FC = () => {
               )}
             </div>
           </div>
+        </div>
+        <div className="h-4 mt-6 bg-red-500 rounded-2xl shadow-lg p-8 flex items-center justify-center hover:bg-red-600 transition-colors">
+          <button 
+            onClick={handleLogOut}
+            className="text-white text-2xl font-bold"
+          >
+            Log Out
+          </button>
         </div>
       </div>
     </div>

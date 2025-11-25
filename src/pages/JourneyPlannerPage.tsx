@@ -9,7 +9,7 @@ import PhaseCard from '../components/PhaseCard';
 import DocumentStatus from '../components/DocumentStatus';
 import { JourneyProfile, Phase, Document } from '../types';
 import { journeyPhases, documentsList } from '../utils/journeyData';
-import { journeyProfileApi } from '../services/api';
+import { journeyProfileApi } from '../services/profileApi';
 
 const JourneyPlannerPage: React.FC = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);

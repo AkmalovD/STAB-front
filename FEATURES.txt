@@ -15,6 +15,7 @@ FRONT-END:
 - add new page budget planning
 - add profile page
 - change logo in browser
+- add profile picture icon to nav when user logged in
 
 BACK-END:
 

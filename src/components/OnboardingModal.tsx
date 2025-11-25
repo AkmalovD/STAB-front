@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { JourneyProfile } from '../types';
 import { toast } from 'sonner';
-import { journeyProfileApi } from '../services/api';
+import { journeyProfileApi } from '../services/profileApi';
 
 interface OnboardingModalProps {
   isOpen: boolean;
