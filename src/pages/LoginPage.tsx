@@ -5,11 +5,16 @@ import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useAuth } from '@/auth/AuthContext';
+import { loginSchema, type LoginFormData } from '@/validators/loginInputSchema';
+import { z } from 'zod'
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [errors, setErrors] = useState<{email?: string; password?: string;}>({})
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const { login, user } = useAuth()
 
