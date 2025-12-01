@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { useAuth } from '../auth/AuthContext';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { Camera, Mail, User, Calendar, MapPin, Book, Award, Settings } from 'lucide-react';
 
 const ProfilePage: React.FC = () => {
@@ -41,8 +43,10 @@ const ProfilePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f0f9ff] to-white pt-24 pb-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      <Header />
+      <div className="min-h-screen bg-gradient-to-b from-[#f0f9ff] to-white pt-24 pb-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Profile Header Card */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-6">
           {/* Cover Image */}
@@ -313,8 +317,10 @@ const ProfilePage: React.FC = () => {
             Log Out
           </button>
         </div>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

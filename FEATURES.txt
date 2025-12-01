@@ -16,7 +16,8 @@ FRONT-END:
 - add profile page
 - change logo in browser
 - add profile picture icon to nav when user logged in
-- route profile page properly
+- route profile page properly ✅
+- when user logged profile button should be replaced with user avatar
 
 BACK-END:
 

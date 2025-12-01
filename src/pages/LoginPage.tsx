@@ -2,11 +2,13 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useAuth } from '@/auth/AuthContext';
 import { loginSchema, type LoginFormData } from '@/validators/loginInputSchema';
 import { z } from 'zod'
+import { toast } from 'sonner'
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -16,7 +18,8 @@ const LoginPage: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const { login, user } = useAuth()
+  const { login, user } = useAuth();
+  const router = useRouter();
 
   const validateForm =(): boolean => {
     const result = loginSchema.safeParse({
@@ -46,11 +49,16 @@ const LoginPage: React.FC = () => {
     // Валидация формы с Zod
     if (!validateForm()) {
       return; // Останавливаем отправку, если есть ошибки
+    } else {
+      toast.success('Вход выполнен успешно!')
+      router.push('/');
     }
     
-    const result = await login(email, password)
+    setIsLoading(true);
+    
+    const result = await login(email, password);
 
-    setIsLoading(false)
+    setIsLoading(false);
 
     if (result.error) {
     // Показываем ошибки от Firebase под соответствующим полем
@@ -63,7 +71,8 @@ const LoginPage: React.FC = () => {
       setErrors({ password: result.error });
     }
   } else {
-    window.location.href = '/';
+    // Успешный вход - редирект на главную
+    router.push('/');
   }
   };
 
@@ -77,7 +86,7 @@ const LoginPage: React.FC = () => {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value)
     if (errors.password) {
-      setErrors({ ...errors, email: undefined})
+      setErrors({ ...errors, password: undefined})
     }
   }
 
