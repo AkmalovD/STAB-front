@@ -42,31 +42,30 @@ const Header: React.FC = () => {
         </Link>
       </div>
       
-      <div className="flex flex-1 justify-end gap-8">
-        <nav className="flex items-center gap-9">
-          <Link href="/" className={getLinkClassName('/')}>
-            Home
+      <nav className="flex flex-1 justify-center items-center gap-9">
+        <Link href="/" className={getLinkClassName('/')}>
+          Home
+        </Link>
+        <Link href="/compare" className={getLinkClassName('/compare')}>
+          Compare Cities
+        </Link>
+        <Link href="/budget" className={getLinkClassName('/budget')}>
+          Budget Planner
+        </Link>
+        <Link href="/scholarships" className={getLinkClassName('/scholarships')}>
+          Scholarships
+        </Link>
+        <Link href="/community" className={getLinkClassName('/community')}>
+          Community
+        </Link>
+        {user && (
+          <Link href="/profile" className={getLinkClassName('/profile')}>
+            Profile
           </Link>
-          <Link href="/compare" className={getLinkClassName('/compare')}>
-            Compare Cities
-          </Link>
-          <Link href="/budget" className={getLinkClassName('/budget')}>
-            Budget Planner
-          </Link>
-          <Link href="/scholarships" className={getLinkClassName('/scholarships')}>
-            Scholarships
-          </Link>
-          <Link href="/community" className={getLinkClassName('/community')}>
-            Community
-          </Link>
-          {user && (
-            <Link href="/profile" className={getLinkClassName('/profile')}>
-              Profile
-            </Link>
-          )}
-        </nav>
-        
-        <div className="flex gap-2">
+        )}
+      </nav>
+      
+      <div className="flex gap-2 items-center">
           <Link 
             href="/plan-journey"
             className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#13a4ec] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#1192d4] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#13a4ec] focus:ring-opacity-50"
@@ -76,9 +75,18 @@ const Header: React.FC = () => {
           {user ? (
             <Link 
               href="/profile" 
-              className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#e7eff3] text-[#0d171b] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#d1e7f1] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#e7eff3] focus:ring-opacity-50"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[#0d98ba] to-[#0369a1] text-white font-bold text-sm hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#0d98ba] focus:ring-opacity-50 overflow-hidden"
+              title={user.displayName || user.email || 'Profile'}
             >
-              <span className="truncate">Profile</span>
+              {user.photoURL ? (
+                <img 
+                  src={user.photoURL} 
+                  alt="User Avatar" 
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <span>{(user.displayName || user.email || 'U').charAt(0).toUpperCase()}</span>
+              )}
             </Link>
           ) : (
             <Link 
@@ -88,7 +96,6 @@ const Header: React.FC = () => {
               <span className="truncate">Login</span>
             </Link>
           )}
-        </div>
       </div>
     </header>
   );

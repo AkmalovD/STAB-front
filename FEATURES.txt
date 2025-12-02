@@ -17,7 +17,8 @@ FRONT-END:
 - change logo in browser
 - add profile picture icon to nav when user logged in
 - route profile page properly ✅
-- when user logged profile button should be replaced with user avatar
+- when user logged profile button should be replaced with user avatar 
+- completely remake ui in city comparison
 
 BACK-END:
 
