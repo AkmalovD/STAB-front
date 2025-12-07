@@ -56,7 +56,7 @@ const LoginPage: React.FC = () => {
     
     setIsLoading(true);
     
-    const result = await login(email, password);
+    const result = await login(email, password, rememberMe);
 
     setIsLoading(false);
 

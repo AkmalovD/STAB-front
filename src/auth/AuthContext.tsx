@@ -9,7 +9,7 @@ import { register as firebaseRegister } from './register';
 interface AuthContextType {
     user: User | null
     loading: boolean
-    login: (email: string, password: string) => Promise<any>
+    login: (email: string, password: string, rememberMe?: boolean) => Promise<any>
     register: (name: string, email: string, password: string) => Promise<any> ,
     logout: () => Promise<void>
 }
@@ -32,7 +32,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return unsubscribe
     }, [])
 
-    const login = (email: string, password: string) => {
+    const login = (email: string, password: string, rememberMe: boolean = false) => {
         return firebaseLogin(email, password)
     }
 
