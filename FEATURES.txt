@@ -19,6 +19,7 @@ FRONT-END:
 - route profile page properly ✅
 - when user logged profile button should be replaced with user avatar 
 - completely remake ui in city comparison
+- devide types in index.ts
 
 BACK-END:
 
