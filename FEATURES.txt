@@ -20,6 +20,7 @@ FRONT-END:
 - when user logged profile button should be replaced with user avatar ✅
 - completely remake ui in city comparison ✅
 - devide types in index.ts 
+- in featured destinations make dialog module with template to study abroad
 
 BACK-END:
 

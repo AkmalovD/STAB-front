@@ -1,5 +1,7 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Testimonial {
   id: number;
@@ -85,108 +87,115 @@ const Testimonials: React.FC = () => {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="px-4 md:px-10 lg:px-40 py-16 bg-white">
-      <div className="max-w-5xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-12">
+    <section className="px-4 md:px-10 lg:px-40 py-20 bg-white relative">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-16">
+          <div className="inline-block px-4 py-1.5 bg-[#f8fafc] border border-[#0d98ba]/20 rounded-full mb-4">
+            <span className="text-sm font-medium text-[#0d98ba]">Student Success</span>
+          </div>
           <motion.h2 
-            className="text-3xl md:text-4xl font-bold text-[#0d171b] mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-4xl md:text-5xl font-bold text-[#0d171b] mb-4 max-w-2xl"
           >
             What Our Students Say
           </motion.h2>
-          <motion.p 
-            className="text-lg text-[#4c809a]"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+          <p className="text-lg text-[#4c809a] max-w-2xl">
             Join thousands of students who successfully planned their study abroad journey
-          </motion.p>
+          </p>
         </div>
 
-        {/* Testimonial Card */}
-        <div className="relative bg-gradient-to-br from-[#0d98ba]/5 to-[#0d98ba]/10 rounded-2xl p-8 md:p-12 shadow-lg">
-          {/* Quote Icon */}
-          <div className="absolute top-6 left-6 text-6xl text-[#0d98ba] opacity-20">
-            "
-          </div>
+        <div className="relative max-w-4xl mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="relative"
+            >
+              <div className="relative bg-white border border-gray-200 rounded-2xl p-8 md:p-12 hover:border-[#0d98ba] transition-all duration-300 shadow-lg hover:shadow-xl">
+                <div className="absolute -top-3 -left-3 w-14 h-14 bg-[#0d98ba] rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-xl">
+                    {currentTestimonial.name.split(' ').map(n => n[0]).join('')}
+                  </span>
+                </div>
 
-          <div className="relative">
-            {/* Rating Stars */}
-            <div className="flex items-center justify-center gap-1 mb-6">
-              {[...Array(currentTestimonial.rating)].map((_, i) => (
-                <svg
-                  key={i}
-                  className="w-6 h-6 text-yellow-400 fill-current"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                </svg>
-              ))}
-            </div>
+                <div className="mt-6 mb-6 flex items-center gap-1">
+                  {[...Array(currentTestimonial.rating)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className="w-5 h-5 text-yellow-400 fill-current"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                  ))}
+                </div>
 
-            {/* Testimonial Text */}
-            <p className="text-xl md:text-2xl text-[#0d171b] text-center leading-relaxed mb-8 font-medium">
-              {currentTestimonial.text}
-            </p>
+                <div className="relative mb-8">
+                  <svg 
+                    className="absolute -top-4 -left-2 w-10 h-10 text-[#0d98ba] opacity-20" 
+                    fill="currentColor" 
+                    viewBox="0 0 32 32"
+                  >
+                  </svg>
+                  <p className="text-lg md:text-xl text-[#0d171b] leading-relaxed pl-8">
+                    "{currentTestimonial.text}"
+                  </p>
+                </div>
 
-            {/* Student Info */}
-            <div className="flex items-center justify-center gap-4">
-              <img
-                src={currentTestimonial.image}
-                alt={currentTestimonial.name}
-                className="w-16 h-16 rounded-full object-cover border-4 border-white shadow-md"
-              />
-              <div className="text-left">
-                <h4 className="font-bold text-[#0d171b] text-lg">
-                  {currentTestimonial.name}
-                </h4>
-                <p className="text-[#4c809a] text-sm">
-                  {currentTestimonial.university}
-                </p>
-                <p className="text-[#4c809a] text-sm">
-                  📍 {currentTestimonial.country}
-                </p>
+                <div className="pt-6 border-t border-gray-100">
+                  <h3 className="text-xl font-bold text-[#0d171b] mb-3">
+                    {currentTestimonial.name}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs px-3 py-1 bg-[#f8fafc] text-[#0d98ba] rounded-full border border-[#0d98ba]/20">
+                      {currentTestimonial.university}
+                    </span>
+                    <span className="text-xs px-3 py-1 bg-[#f8fafc] text-[#0d98ba] rounded-full border border-[#0d98ba]/20">
+                      📍 {currentTestimonial.country}
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </AnimatePresence>
 
           {/* Navigation Arrows */}
           <button
             onClick={goToPrevious}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-[#0d98ba] hover:text-white transition-colors"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 w-12 h-12 bg-white border border-gray-200 rounded-xl shadow-md flex items-center justify-center hover:bg-[#0d98ba] hover:border-[#0d98ba] hover:text-white transition-all duration-300 hover:shadow-xl group"
             aria-label="Previous testimonial"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-[#0d98ba] hover:text-white transition-colors"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 w-12 h-12 bg-white border border-gray-200 rounded-xl shadow-md flex items-center justify-center hover:bg-[#0d98ba] hover:border-[#0d98ba] hover:text-white transition-all duration-300 hover:shadow-xl group"
             aria-label="Next testimonial"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
 
         {/* Dots Indicator */}
-        <div className="flex items-center justify-center gap-2 mt-8">
+        <div className="flex items-center justify-center gap-2 mt-12">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
+              className={`h-2 rounded-full transition-all ${
                 index === currentIndex
                   ? 'bg-[#0d98ba] w-8'
-                  : 'bg-gray-300 hover:bg-gray-400'
+                  : 'bg-gray-300 hover:bg-gray-400 w-2'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />

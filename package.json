@@ -4,6 +4,7 @@
   "private": true,
   "description": "A comprehensive study abroad planning application with city comparison and interactive features",
   "dependencies": {
+    "@dataconnect/generated": "file:src/dataconnect-generated",
     "@types/node": "^20.0.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
