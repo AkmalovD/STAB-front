@@ -1,10 +1,10 @@
 'use client'
 
+import { Award, Book, Calendar, Camera, Mail, MapPin, Settings, User } from 'lucide-react';
 import React, { useState } from 'react';
 import { useAuth } from '../auth/AuthContext';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Camera, Mail, User, Calendar, MapPin, Book, Award, Settings } from 'lucide-react';
+import Header from '../components/Header';
 
 const ProfilePage: React.FC = () => {
   const { user, logout } = useAuth();
@@ -50,7 +50,7 @@ const ProfilePage: React.FC = () => {
         {/* Profile Header Card */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-6">
           {/* Cover Image */}
-          <div className="h-48 bg-gradient-to-r from-[#0d98ba] to-[#0369a1] relative">
+          <div className="h-48 bg-gradient-to-r from-[#0d98ba] to-[#0d98ba] relative">
             <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10"></div>
           </div>
           
@@ -180,19 +180,19 @@ const ProfilePage: React.FC = () => {
 
           {/* Quick Stats */}
           <div className="space-y-6">
-            <div className="bg-gradient-to-br from-[#0d98ba] to-[#0369a1] rounded-2xl shadow-lg p-6 text-white">
-              <h3 className="text-lg font-semibold mb-4">Profile Completion</h3>
+            <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+              <h3 className="text-lg font-semibold mb-4 text-[#0d171b]">Profile Completion</h3>
               <div className="relative pt-1">
                 <div className="flex mb-2 items-center justify-between">
                   <div>
-                    <span className="text-3xl font-bold">85%</span>
+                    <span className="text-3xl font-bold text-[#0d98ba]">85%</span>
                   </div>
                 </div>
-                <div className="overflow-hidden h-3 text-xs flex rounded-full bg-white bg-opacity-30">
-                  <div style={{ width: '85%' }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-white"></div>
+                <div className="overflow-hidden h-3 text-xs flex rounded-full bg-gray-100">
+                  <div style={{ width: '85%' }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-[#0d98ba] to-[#0369a1] rounded-full"></div>
                 </div>
               </div>
-              <p className="mt-4 text-sm opacity-90">Almost there! Complete your study preferences to get better recommendations.</p>
+              <p className="mt-4 text-sm text-[#4c809a]">Almost there! Complete your study preferences to get better recommendations.</p>
             </div>
 
             <div className="bg-white rounded-2xl shadow-lg p-6">

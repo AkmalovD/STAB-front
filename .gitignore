@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 credentials.txt
+copilot-instructions.md
 firebase.ts
 .next/
 node_modules

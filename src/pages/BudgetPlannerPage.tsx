@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 interface BudgetData {
   monthlyIncome: number;
@@ -86,10 +86,10 @@ const BudgetPlannerPage: React.FC = () => {
           {/* Header Section */}
           <div className="flex flex-wrap justify-between gap-4 items-center">
             <div className="flex flex-col gap-2">
-              <p className="text-[#0d171b] text-4xl font-black leading-tight tracking-[-0.033em]">
+              <p className="text-[#0d171b] text-4xl font-bold">
                 My Study Abroad Budget Planner
               </p>
-              <p className="text-[#4c809a] text-base font-normal leading-normal">
+              <p className="text-[#4c809a] text-lg">
                 Plan your finances to make your dream of studying abroad a reality.
               </p>
             </div>
@@ -117,7 +117,7 @@ const BudgetPlannerPage: React.FC = () => {
               {/* Income & Savings Card */}
               <div className="bg-white rounded-2xl shadow-lg border border-blue-100 p-8 hover:shadow-xl transition-shadow">
                 <div className="flex items-center gap-3 mb-6">
-                  <h2 className="text-[#0d171b] text-2xl font-bold leading-tight">
+                  <h2 className="text-[#0d171b] text-2xl font-bold">
                     Income & Savings
                   </h2>
                 </div>
@@ -173,7 +173,7 @@ const BudgetPlannerPage: React.FC = () => {
               {/* Monthly Expenses Card */}
               <div className="bg-white rounded-2xl shadow-lg border border-blue-100 p-8 hover:shadow-xl transition-shadow">
                 <div className="flex items-center gap-3 mb-6">
-                  <h2 className="text-[#0d171b] text-2xl font-bold leading-tight">
+                  <h2 className="text-[#0d171b] text-2xl font-bold">
                     Monthly Expenses
                   </h2>
                 </div>
@@ -312,7 +312,7 @@ const BudgetPlannerPage: React.FC = () => {
             <div className="lg:col-span-2 flex flex-col gap-8">
               {/* Financial Overview Card */}
               <div className="bg-white rounded-xl shadow-sm border border-black/5 p-6">
-                <h2 className="text-[#0d171b] text-[22px] font-bold leading-tight tracking-[-0.015em] mb-6">
+                <h2 className="text-[#0d171b] text-2xl font-bold mb-6">
                   Financial Overview
                 </h2>
                 <div className="grid grid-cols-2 gap-4 mb-6">
@@ -352,7 +352,7 @@ const BudgetPlannerPage: React.FC = () => {
                 </div>
 
                 {/* Expense Breakdown */}
-                <h3 className="text-[#0d171b] text-lg font-bold leading-tight tracking-[-0.015em] mb-4">
+                <h3 className="text-[#0d171b] text-lg font-bold mb-4">
                   Expense Breakdown
                 </h3>
                 <div className="flex flex-col gap-3">
@@ -405,7 +405,7 @@ const BudgetPlannerPage: React.FC = () => {
 
               {/* Savings Tips */}
               <div className="bg-white rounded-xl shadow-sm border border-black/5 p-6">
-                <h2 className="text-[#0d171b] text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">
+                <h2 className="text-[#0d171b] text-2xl font-bold mb-4">
                   Savings Tips
                 </h2>
                 <div className="flex flex-col gap-3">

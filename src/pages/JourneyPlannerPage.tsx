@@ -205,7 +205,7 @@ const JourneyPlannerPage: React.FC = () => {
               <div className="flex items-center justify-between mb-8">
                 <div>
                   <h1 className="text-4xl font-bold text-[#0d171b] mb-2">
-                    Welcome back, {profile.name}! 👋
+                    Welcome back, {profile.name}! 
                   </h1>
                   <p className="text-lg text-[#4c809a]">
                     Planning to study {profile.studyLevel} in {profile.targetCountry}
