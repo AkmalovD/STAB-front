@@ -109,7 +109,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onComplete, o
               </div>
               <div className="bg-blue-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600">
-                  👋 We'll use this to personalize your journey plan
+                  We'll use this to personalize your journey plan
                 </p>
               </div>
             </div>
@@ -182,7 +182,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onComplete, o
               </div>
 
               <div className="bg-green-50 p-4 rounded-lg space-y-2">
-                <p className="font-semibold text-green-800">🎉 Almost there!</p>
+                <p className="font-semibold text-green-800">Almost there!</p>
                 <p className="text-sm text-green-700">
                   Based on your start date, we'll create a personalized timeline with all the tasks and deadlines you need to complete.
                 </p>

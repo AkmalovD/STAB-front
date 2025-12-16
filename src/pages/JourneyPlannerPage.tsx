@@ -1,15 +1,16 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import OnboardingModal from '../components/OnboardingModal';
-import ProgressDashboard from '../components/ProgressDashboard';
-import PhaseCard from '../components/PhaseCard';
+import { CheckSquare, ClipboardList, FileText } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import DocumentStatus from '../components/DocumentStatus';
-import { JourneyProfile, Phase, Document } from '../types';
-import { journeyPhases, documentsList } from '../utils/journeyData';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import OnboardingModal from '../components/OnboardingModal';
+import PhaseCard from '../components/PhaseCard';
+import ProgressDashboard from '../components/ProgressDashboard';
 import { journeyProfileApi } from '../services/profileApi';
+import { Document, JourneyProfile, Phase } from '../types';
+import { documentsList, journeyPhases } from '../utils/journeyData';
 
 const JourneyPlannerPage: React.FC = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -162,13 +163,14 @@ const JourneyPlannerPage: React.FC = () => {
                 className="px-10 py-5 bg-gradient-to-r from-[#0d98ba] to-[#13a4ec] text-white rounded-xl font-bold text-xl hover:shadow-2xl transition-all hover:scale-105 inline-flex items-center gap-3"
               >
                 <span>Start Planning My Journey</span>
-                <span>🚀</span>
               </button>
 
               {/* Features Grid */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
                 <div className="bg-white rounded-xl p-6 shadow-md">
-                  <div className="text-4xl mb-4">📋</div>
+                  <div className="w-14 h-14 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center mb-4 mx-auto">
+                    <ClipboardList className="w-7 h-7 text-[#0d98ba]" />
+                  </div>
                   <h3 className="font-bold text-lg text-[#0d171b] mb-2">
                     Step-by-Step Guide
                   </h3>
@@ -177,7 +179,9 @@ const JourneyPlannerPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="bg-white rounded-xl p-6 shadow-md">
-                  <div className="text-4xl mb-4">✅</div>
+                  <div className="w-14 h-14 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center mb-4 mx-auto">
+                    <CheckSquare className="w-7 h-7 text-[#0d98ba]" />
+                  </div>
                   <h3 className="font-bold text-lg text-[#0d171b] mb-2">
                     Smart Checklists
                   </h3>
@@ -186,7 +190,9 @@ const JourneyPlannerPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="bg-white rounded-xl p-6 shadow-md">
-                  <div className="text-4xl mb-4">📄</div>
+                  <div className="w-14 h-14 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center mb-4 mx-auto">
+                    <FileText className="w-7 h-7 text-[#0d98ba]" />
+                  </div>
                   <h3 className="font-bold text-lg text-[#0d171b] mb-2">
                     Document Manager
                   </h3>
@@ -239,7 +245,7 @@ const JourneyPlannerPage: React.FC = () => {
 
               {/* Tips Section */}
               <div className="mt-10 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-8">
-                <h3 className="text-2xl font-bold text-[#0d171b] mb-4">💡 Pro Tips</h3>
+                <h3 className="text-2xl font-bold text-[#0d171b] mb-4">Pro Tips</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-white rounded-lg p-4">
                     <h4 className="font-semibold text-[#0d171b] mb-2">Start Early</h4>
