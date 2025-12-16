@@ -7,6 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+HOME_PAGE_COMPONENTS.md
+INTERVIEW_CHEATSHEET.md
+ISSUE_FIXED.md
+MIGRATION_TO_NEXTJS.md
+QUICK_START.md
+README_TECHNICAL.md
+FEATURES.txt
 credentials.txt
 copilot-instructions.md
 firebase.ts
