@@ -1,13 +1,12 @@
 'use client'
 
-import React, { useState } from 'react';
+import { useAuth } from '@/auth/AuthContext';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import { registerSchema } from '@/validators/registerInputSchema';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Header from '../../src/components/Header';
-import Footer from '../../src/components/Footer';
-import { useAuth } from '@/auth/AuthContext';
-import { registerSchema } from '@/validators/registerInputSchema';
-import { z } from 'zod';
+import React, { useState } from 'react';
 
 const SignUpPage: React.FC = () => {
   const [name, setName] = useState('');

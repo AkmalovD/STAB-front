@@ -1,14 +1,12 @@
 'use client'
 
-'use client'
-
-import React, { useState } from 'react';
+import { resetPassword } from '@/auth/resetPassword';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import { resetPasswordSchema } from '@/validators/resetPasswordSchema';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Header from '../../src/components/Header';
-import Footer from '../../src/components/Footer';
-import { resetPassword } from '@/auth/resetPassword';
-import { resetPasswordSchema } from '@/validators/resetPasswordSchema';
+import React, { useState } from 'react';
 import { toast } from 'sonner';
 
 const ForgotPasswordPage: React.FC = () => {
