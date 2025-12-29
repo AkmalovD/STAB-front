@@ -1,5 +1,19 @@
-import React from 'react';
 import { Document } from '@/types';
+import {
+  AlertCircle,
+  Calendar,
+  CheckCircle2,
+  Circle,
+  Clock,
+  DollarSign,
+  FileCheck,
+  FileText,
+  Folder,
+  GraduationCap,
+  User,
+  XCircle,
+} from 'lucide-react';
+import React from 'react';
 
 interface DocumentStatusProps {
   documents: Document[];
@@ -7,29 +21,40 @@ interface DocumentStatusProps {
 }
 
 const DocumentStatus: React.FC<DocumentStatusProps> = ({ documents, onStatusChange }) => {
-  const getStatusColor = (status: Document['status']) => {
+  const getStatusConfig = (status: Document['status']) => {
     switch (status) {
       case 'ready':
-        return 'bg-green-100 text-green-700 border-green-300';
+        return {
+          icon: CheckCircle2,
+          color: 'text-green-600',
+          bgColor: 'bg-green-50',
+          borderColor: 'border-green-200',
+          label: 'Ready',
+        };
       case 'in-progress':
-        return 'bg-yellow-100 text-yellow-700 border-yellow-300';
+        return {
+          icon: Clock,
+          color: 'text-amber-600',
+          bgColor: 'bg-amber-50',
+          borderColor: 'border-amber-200',
+          label: 'In Progress',
+        };
       case 'missing':
-        return 'bg-red-100 text-red-700 border-red-300';
+        return {
+          icon: XCircle,
+          color: 'text-red-600',
+          bgColor: 'bg-red-50',
+          borderColor: 'border-red-200',
+          label: 'Missing',
+        };
       default:
-        return 'bg-gray-100 text-gray-700 border-gray-300';
-    }
-  };
-
-  const getStatusIcon = (status: Document['status']) => {
-    switch (status) {
-      case 'ready':
-        return '✓';
-      case 'in-progress':
-        return '⏳';
-      case 'missing':
-        return '✗';
-      default:
-        return '○';
+        return {
+          icon: Circle,
+          color: 'text-gray-400',
+          bgColor: 'bg-gray-50',
+          borderColor: 'border-gray-200',
+          label: 'Not Started',
+        };
     }
   };
 
@@ -41,106 +66,181 @@ const DocumentStatus: React.FC<DocumentStatusProps> = ({ documents, onStatusChan
     return groups;
   }, {} as Record<string, Document[]>);
 
-  const categoryIcons: Record<string, string> = {
-    Personal: '👤',
-    Academic: '🎓',
-    Tests: '📝',
-    Application: '📄',
-    Financial: '💰',
+  const getCategoryIcon = (category: string) => {
+    const iconClass = 'w-5 h-5 text-[#0d98ba]';
+    switch (category) {
+      case 'Personal':
+        return <User className={iconClass} />;
+      case 'Academic':
+        return <GraduationCap className={iconClass} />;
+      case 'Tests':
+        return <FileText className={iconClass} />;
+      case 'Application':
+        return <FileCheck className={iconClass} />;
+      case 'Financial':
+        return <DollarSign className={iconClass} />;
+      default:
+        return <Folder className={iconClass} />;
+    }
   };
 
   const readyCount = documents.filter((d) => d.status === 'ready').length;
   const totalRequired = documents.filter((d) => d.required).length;
+  const progressPercentage = totalRequired > 0 ? (readyCount / totalRequired) * 100 : 0;
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-6">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h2 className="text-2xl font-bold text-[#0d171b] mb-2">Document Checklist</h2>
-          <p className="text-[#4c809a]">Track all required documents for your application</p>
-        </div>
-        <div className="text-right">
-          <div className="text-3xl font-bold text-[#0d98ba]">
-            {readyCount}/{totalRequired}
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+      {/* Header Section */}
+      <div className="bg-gradient-to-r from-[#0d98ba] to-[#13a4ec] px-6 py-5">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold text-white mb-1">Document Checklist</h2>
+            <p className="text-blue-100 text-sm">Track all required documents for your application</p>
           </div>
-          <div className="text-sm text-gray-600">Ready</div>
-        </div>
-      </div>
-
-      {/* Progress Bar */}
-      <div className="mb-6">
-        <div className="w-full bg-gray-200 rounded-full h-3">
-          <div
-            className="bg-[#0d98ba] h-3 rounded-full transition-all"
-            style={{ width: `${(readyCount / totalRequired) * 100}%` }}
-          />
-        </div>
-        <p className="text-xs text-gray-600 mt-2">
-          {totalRequired - readyCount} documents remaining
-        </p>
-      </div>
-
-      {/* Documents by Category */}
-      <div className="space-y-6">
-        {Object.entries(categoryGroups).map(([category, docs]) => (
-          <div key={category}>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-2xl">{categoryIcons[category] || '📁'}</span>
-              <h3 className="font-bold text-lg text-gray-900">{category}</h3>
-              <span className="text-sm text-gray-500">
-                ({docs.filter((d) => d.status === 'ready').length}/{docs.length})
-              </span>
+          <div className="text-right bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3">
+            <div className="text-3xl font-bold text-white">
+              {readyCount}/{totalRequired}
             </div>
-            <div className="space-y-2">
-              {docs.map((doc) => (
-                <div
-                  key={doc.id}
-                  className="flex items-center justify-between p-3 rounded-lg border-2 border-gray-100 hover:border-gray-200 transition-colors"
-                >
-                  <div className="flex items-center gap-3 flex-1">
-                    <span className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${getStatusColor(doc.status)}`}>
-                      {getStatusIcon(doc.status)}
-                    </span>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <p className="font-medium text-gray-900">{doc.name}</p>
-                        {doc.required && (
-                          <span className="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-medium">
-                            Required
-                          </span>
-                        )}
+            <div className="text-xs text-blue-100 font-medium">Documents Ready</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="p-6">
+        {/* Progress Section */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-semibold text-gray-700">Overall Progress</span>
+            <span className="text-sm font-semibold text-[#0d98ba]">{Math.round(progressPercentage)}%</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+            <div
+              className="bg-gradient-to-r from-[#0d98ba] to-[#13a4ec] h-2.5 rounded-full transition-all duration-500 ease-out"
+              style={{ width: `${progressPercentage}%` }}
+            />
+          </div>
+          <p className="text-xs text-gray-500 mt-2">
+            {totalRequired - readyCount} of {totalRequired} required documents remaining
+          </p>
+        </div>
+
+        {/* Documents by Category */}
+        <div className="space-y-6">
+          {Object.entries(categoryGroups).map(([category, docs]) => {
+            const categoryReady = docs.filter((d) => d.status === 'ready').length;
+            const categoryTotal = docs.length;
+            const categoryProgress = categoryTotal > 0 ? (categoryReady / categoryTotal) * 100 : 0;
+
+            return (
+              <div key={category} className="border border-gray-200 rounded-lg overflow-hidden">
+                {/* Category Header */}
+                <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="p-1.5 bg-white rounded-md border border-gray-200">
+                        {getCategoryIcon(category)}
                       </div>
-                      {doc.expiryDate && (
-                        <p className="text-xs text-gray-500 mt-1">
-                          Expires: {doc.expiryDate.toLocaleDateString()}
+                      <div>
+                        <h3 className="font-semibold text-gray-900">{category}</h3>
+                        <p className="text-xs text-gray-500">
+                          {categoryReady} of {categoryTotal} completed
                         </p>
-                      )}
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm font-bold text-[#0d98ba]">{Math.round(categoryProgress)}%</div>
+                      <div className="w-16 bg-gray-200 rounded-full h-1.5 mt-1">
+                        <div
+                          className="bg-[#0d98ba] h-1.5 rounded-full transition-all"
+                          style={{ width: `${categoryProgress}%` }}
+                        />
+                      </div>
                     </div>
                   </div>
-                  {onStatusChange && (
-                    <select
-                      value={doc.status}
-                      onChange={(e) => onStatusChange(doc.id, e.target.value as Document['status'])}
-                      className="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#0d98ba] focus:border-transparent"
-                    >
-                      <option value="missing">Missing</option>
-                      <option value="in-progress">In Progress</option>
-                      <option value="ready">Ready</option>
-                    </select>
-                  )}
                 </div>
-              ))}
+
+                {/* Documents List */}
+                <div className="divide-y divide-gray-100">
+                  {docs.map((doc) => {
+                    const statusConfig = getStatusConfig(doc.status);
+                    const StatusIcon = statusConfig.icon;
+
+                    return (
+                      <div
+                        key={doc.id}
+                        className={`px-4 py-4 hover:bg-gray-50 transition-colors ${
+                          doc.status === 'ready' ? 'bg-green-50/30' : ''
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="flex items-start gap-3 flex-1 min-w-0">
+                            <div
+                              className={`p-2 rounded-lg ${statusConfig.bgColor} ${statusConfig.borderColor} border flex-shrink-0`}
+                            >
+                              <StatusIcon className={`w-5 h-5 ${statusConfig.color}`} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <p className="font-medium text-gray-900">{doc.name}</p>
+                                {doc.required && (
+                                  <span className="inline-flex items-center gap-1 text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-medium">
+                                    <AlertCircle className="w-3 h-3" />
+                                    Required
+                                  </span>
+                                )}
+                                <span
+                                  className={`inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full font-medium ${statusConfig.bgColor} ${statusConfig.color}`}
+                                >
+                                  {statusConfig.label}
+                                </span>
+                              </div>
+                              {doc.expiryDate && (
+                                <div className="flex items-center gap-1.5 mt-2 text-xs text-gray-500">
+                                  <Calendar className="w-3.5 h-3.5" />
+                                  <span>Expires: {doc.expiryDate.toLocaleDateString('en-US', { 
+                                    month: 'short', 
+                                    day: 'numeric', 
+                                    year: 'numeric' 
+                                  })}</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          {onStatusChange && (
+                            <div className="flex-shrink-0">
+                              <select
+                                value={doc.status}
+                                onChange={(e) => onStatusChange(doc.id, e.target.value as Document['status'])}
+                                className="px-3 py-2 text-sm border border-gray-300 rounded-lg bg-white text-gray-700 focus:ring-2 focus:ring-[#0d98ba] focus:border-[#0d98ba] transition-all cursor-pointer hover:border-gray-400"
+                              >
+                                <option value="missing">Missing</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="ready">Ready</option>
+                              </select>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Tip Section */}
+        <div className="mt-8 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
+          <div className="flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm font-semibold text-blue-900 mb-1">Pro Tip</p>
+              <p className="text-sm text-blue-800 leading-relaxed">
+                Start gathering documents early! Some documents like transcripts and recommendation letters can take several weeks to obtain. Plan ahead to avoid last-minute delays.
+              </p>
             </div>
           </div>
-        ))}
-      </div>
-
-      {/* Tip */}
-      <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-        <p className="text-sm text-blue-800">
-          <span className="font-semibold">💡 Tip:</span> Start gathering documents early! 
-          Some documents like transcripts and recommendation letters can take weeks to obtain.
-        </p>
+        </div>
       </div>
     </div>
   );
