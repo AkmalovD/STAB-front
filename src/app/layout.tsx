@@ -12,31 +12,30 @@ const inter = Inter({
   display: 'swap',
 })
 
-// San Francisco Pro font
 const sfPro = localFont({
   src: [
     {
-      path: '../public/fonts/SF-Pro-Display-Light.ttf',
+      path: '../../public/fonts/SF-Pro-Display-Light.ttf',
       weight: '300',
       style: 'normal',
     },
     {
-      path: '../public/fonts/SF-Pro-Display-Regular.ttf',
+      path: '../../public/fonts/SF-Pro-Display-Regular.ttf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/SF-Pro-Display-Medium.ttf',
+      path: '../../public/fonts/SF-Pro-Display-Medium.ttf',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '../public/fonts/SF-Pro-Display-Semibold.ttf',
+      path: '../../public/fonts/SF-Pro-Display-Semibold.ttf',
       weight: '600',
       style: 'normal',
     },
     {
-      path: '../public/fonts/SF-Pro-Display-Bold.ttf',
+      path: '../../public/fonts/SF-Pro-Display-Bold.ttf',
       weight: '700',
       style: 'normal',
     },
