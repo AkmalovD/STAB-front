@@ -1,10 +1,10 @@
 'use client'
 
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { useAuth } from '@/auth/AuthContext';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React from 'react';
 
 const Header: React.FC = () => {
   const pathname = usePathname();

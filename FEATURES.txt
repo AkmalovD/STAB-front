@@ -23,6 +23,7 @@ FRONT-END:
 - in featured destinations make dialog module with template to study abroad
 - refactor strucure of the project
 - add option in modal while starting journey, suggest to use user's name immidiately
+- fix testimonials bug
 
 BACK-END:
 
