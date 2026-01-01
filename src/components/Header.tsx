@@ -58,11 +58,6 @@ const Header: React.FC = () => {
         <Link href="/community" className={getLinkClassName('/community')}>
           Community
         </Link>
-        {user && (
-          <Link href="/profile" className={getLinkClassName('/profile')}>
-            Profile
-          </Link>
-        )}
       </nav>
       
       <div className="flex gap-2 items-center">

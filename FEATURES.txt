@@ -24,6 +24,8 @@ FRONT-END:
 - refactor strucure of the project
 - add option in modal while starting journey, suggest to use user's name immidiately
 - fix testimonials bug
+- remake landing page, make more attractive
+- while user is not logged in, hide features
 
 BACK-END:
 
