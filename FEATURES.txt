@@ -26,6 +26,7 @@ FRONT-END:
 - fix testimonials bug
 - remake landing page, make more attractive
 - while user is not logged in, hide features
+- manage colors trough whole project (mainly-[#0d98ba])
 
 BACK-END:
 

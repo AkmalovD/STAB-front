@@ -16,7 +16,7 @@ const Header: React.FC = () => {
 
   const getLinkClassName = (path: string): string => {
     const baseClasses = "text-sm font-medium leading-normal transition-colors duration-200";
-    const activeClasses = "text-[#13a4ec] border-b-2 border-[#13a4ec] pb-1";
+    const activeClasses = "text-[#0d98ba] border-b-2 border-[#0d98ba] pb-1";
     const inactiveClasses = "text-[#0d171b] hover:text-[#4c809a]";
     
     return `${baseClasses} ${isActiveRoute(path) ? activeClasses : inactiveClasses}`;
@@ -68,14 +68,14 @@ const Header: React.FC = () => {
       <div className="flex gap-2 items-center">
           <Link 
             href="/plan-journey"
-            className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#13a4ec] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#1192d4] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#13a4ec] focus:ring-opacity-50"
+            className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#0d98ba] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#1192d4] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#13a4ec] focus:ring-opacity-50"
           >
             <span className="truncate">Plan My Journey</span>
           </Link>
           {user ? (
             <Link 
               href="/profile" 
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[#0d98ba] to-[#0369a1] text-white font-bold text-sm hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#0d98ba] focus:ring-opacity-50 overflow-hidden"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-[#0d98ba] text-white font-bold text-sm hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#0d98ba] focus:ring-opacity-50 overflow-hidden"
               title={user.displayName || user.email || 'Profile'}
             >
               {user.photoURL ? (
