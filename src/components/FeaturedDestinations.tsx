@@ -1,9 +1,11 @@
 'use client'
 
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/auth/AuthContext';
 import { citiesData } from '@/utils/data';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import AuthRequiredModal from './AuthRequiredModal';
 
 interface DestinationCardProps {
   city: {
@@ -14,13 +16,13 @@ interface DestinationCardProps {
     flag: string;
     costOfLiving: string;
   };
+  onExplore: (cityName: string) => void;
 }
 
-const DestinationCard: React.FC<DestinationCardProps> = ({ city }) => {
-  const router = useRouter();
+const DestinationCard: React.FC<DestinationCardProps> = ({ city, onExplore }) => {
 
   const handleExplore = () => {
-    router.push(`/compare?city=${encodeURIComponent(city.name)}`);
+    onExplore(city.name);
   };
 
   return (
@@ -153,12 +155,39 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ city }) => {
 
 const FeaturedDestinations: React.FC = () => {
   const router = useRouter();
+  const { user } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [selectedCity, setSelectedCity] = useState('');
   
   // Get first 6 cities
   const featuredCities = citiesData.slice(0, 6);
 
+  const handleCityExplore = (cityName: string) => {
+    if (!user) {
+      setSelectedCity(`городу ${cityName}`);
+      setShowAuthModal(true);
+    } else {
+      router.push(`/compare?city=${encodeURIComponent(cityName)}`);
+    }
+  };
+
+  const handleViewAllClick = () => {
+    if (!user) {
+      setSelectedCity('всем городам');
+      setShowAuthModal(true);
+    } else {
+      router.push('/compare');
+    }
+  };
+
   return (
-    <motion.section 
+    <>
+      <AuthRequiredModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)}
+        featureName={selectedCity}
+      />
+      <motion.section 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -177,7 +206,7 @@ const FeaturedDestinations: React.FC = () => {
             </p>
           </div>
           <button
-            onClick={() => router.push('/compare')}
+            onClick={handleViewAllClick}
             className="hidden md:block px-6 py-3 border-2 border-[#0d98ba] text-[#0d98ba] rounded-lg font-semibold hover:bg-[#0d98ba] hover:text-white transition-colors"
           >
             View All Cities
@@ -231,7 +260,7 @@ const FeaturedDestinations: React.FC = () => {
               }}
               className="h-full"
             >
-              <DestinationCard city={city} />
+              <DestinationCard city={city} onExplore={handleCityExplore} />
             </motion.div>
           ))}
         </motion.div>
@@ -239,7 +268,7 @@ const FeaturedDestinations: React.FC = () => {
         {/* Mobile View All Button */}
         <div className="md:hidden text-center mt-8">
           <button
-            onClick={() => router.push('/compare')}
+            onClick={handleViewAllClick}
             className="px-6 py-3 border-2 border-[#0d98ba] text-[#0d98ba] rounded-lg font-semibold hover:bg-[#0d98ba] hover:text-white transition-colors"
           >
             View All Cities
@@ -247,6 +276,7 @@ const FeaturedDestinations: React.FC = () => {
         </div>
       </div>
     </motion.section>
+    </>
   );
 };
 

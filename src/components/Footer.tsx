@@ -1,11 +1,34 @@
-import React from 'react';
+'use client'
+
+import { useAuth } from '@/auth/AuthContext';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import AuthRequiredModal from './AuthRequiredModal';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const router = useRouter();
+  const { user } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [selectedFeature, setSelectedFeature] = useState('');
+
+  const handleFeatureClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string, featureName: string) => {
+    if (!user && (path === '/compare' || path === '/scholarships' || path === '/community')) {
+      e.preventDefault();
+      setSelectedFeature(featureName);
+      setShowAuthModal(true);
+    }
+  };
 
   return (
-    <footer className="bg-[#0d171b] text-white">
+    <>
+      <AuthRequiredModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)}
+        featureName={selectedFeature}
+      />
+      <footer className="bg-[#0d171b] text-white">
       {/* Main Footer Content */}
       <div className="px-4 md:px-10 lg:px-40 py-12">
         <div className="max-w-7xl mx-auto">
@@ -75,17 +98,29 @@ const Footer: React.FC = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/compare" className="text-gray-400 hover:text-[#0d98ba] transition-colors">
+                  <Link 
+                    href="/compare" 
+                    onClick={(e) => handleFeatureClick(e, '/compare', 'сравнению городов')}
+                    className="text-gray-400 hover:text-[#0d98ba] transition-colors"
+                  >
                     Compare Cities
                   </Link>
                 </li>
                 <li>
-                  <Link href="/scholarships" className="text-gray-400 hover:text-[#0d98ba] transition-colors">
+                  <Link 
+                    href="/scholarships" 
+                    onClick={(e) => handleFeatureClick(e, '/scholarships', 'поиску стипендий')}
+                    className="text-gray-400 hover:text-[#0d98ba] transition-colors"
+                  >
                     Scholarships
                   </Link>
                 </li>
                 <li>
-                  <Link href="/community" className="text-gray-400 hover:text-[#0d98ba] transition-colors">
+                  <Link 
+                    href="/community" 
+                    onClick={(e) => handleFeatureClick(e, '/community', 'сообществу')}
+                    className="text-gray-400 hover:text-[#0d98ba] transition-colors"
+                  >
                     Community
                   </Link>
                 </li>
@@ -186,6 +221,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </footer>
+    </>
   );
 };
 

@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { CurrencyConversion } from '@/types';
 import { convertCurrency, formatCurrency, getMockExchangeRates } from '@/utils/calculations';
-import Select from 'react-select'
+import React, { useState } from 'react';
 
 const CurrencyConverter: React.FC = () => {
   const [amount, setAmount] = useState<number>(1000);

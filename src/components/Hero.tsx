@@ -1,16 +1,20 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import React, { useCallback, useState } from 'react';
+import { useAuth } from '@/auth/AuthContext';
 import { debounce, validateSearchQuery } from '@/utils/calculations';
 import { searchCities } from '@/utils/data';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import React, { useCallback, useState } from 'react';
+import AuthRequiredModal from './AuthRequiredModal';
 
 const Hero: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const router = useRouter();
+  const { user } = useAuth();
 
   // Debounced search function
   const debouncedSearch = useCallback(
@@ -36,22 +40,36 @@ const Hero: React.FC = () => {
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateSearchQuery(searchQuery)) {
-      // Navigate to compare page with search query
-      router.push(`/compare?search=${encodeURIComponent(searchQuery)}`);
+      if (!user) {
+        setShowAuthModal(true);
+      } else {
+        // Navigate to compare page with search query
+        router.push(`/compare?search=${encodeURIComponent(searchQuery)}`);
+      }
     }
   };
 
   const handleCitySelect = (cityName: string) => {
-    setSearchQuery(cityName);
-    setSearchResults([]);
-    router.push(`/compare?city=${encodeURIComponent(cityName)}`);
+    if (!user) {
+      setShowAuthModal(true);
+    } else {
+      setSearchQuery(cityName);
+      setSearchResults([]);
+      router.push(`/compare?city=${encodeURIComponent(cityName)}`);
+    }
   };
 
   return (
-    <div className="@container">
+    <>
+      <AuthRequiredModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)}
+        featureName="поиску городов"
+      />
+      <div className="@container">
       <div className="@[480px]:p-4">
         <div
-          className="flex min-h-[calc(100vh-65px)] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 relative overflow-hidden"
+          className="flex min-h-[calc(100vh)] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 relative overflow-hidden"
           style={{
             backgroundImage: `linear-gradient(135deg, rgba(13, 152, 186, 0.85) 0%, rgba(19, 164, 236, 0.85) 100%), url("https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1600")`
           }}
@@ -253,6 +271,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

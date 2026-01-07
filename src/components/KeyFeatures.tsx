@@ -1,8 +1,10 @@
 'use client'
 
-import React from 'react';
+import { useAuth } from '@/auth/AuthContext';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion'
+import React, { useState } from 'react';
+import AuthRequiredModal from './AuthRequiredModal';
 
 interface Feature {
   title: string;
@@ -52,6 +54,36 @@ const features: Feature[] = [
 
 const KeyFeatures: React.FC = () => {
   const router = useRouter();
+  const { user } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [selectedFeature, setSelectedFeature] = useState('');
+
+  const handleFeatureClick = (feature: Feature) => {
+    if (!user) {
+      setSelectedFeature(feature.title);
+      setShowAuthModal(true);
+    } else {
+      router.push(feature.link);
+    }
+  };
+
+  const handleExploreAllClick = () => {
+    if (!user) {
+      setSelectedFeature('всем функциям платформы');
+      setShowAuthModal(true);
+    } else {
+      router.push('/compare');
+    }
+  };
+
+  const handleStartJourneyClick = () => {
+    if (!user) {
+      setSelectedFeature('планированию путешествия');
+      setShowAuthModal(true);
+    } else {
+      router.push('/plan-journey');
+    }
+  };
 
   const renderIcon = (index: number) => {
     const iconClass = "w-full h-full";
@@ -105,7 +137,13 @@ const KeyFeatures: React.FC = () => {
   };
   
   return (
-    <section className="px-4 md:px-10 lg:px-40 py-20 bg-gradient-to-b from-white to-[#f8fafc]">
+    <>
+      <AuthRequiredModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)}
+        featureName={selectedFeature}
+      />
+      <section className="px-4 md:px-10 lg:px-40 py-20 bg-gradient-to-b from-white to-[#f8fafc]">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 gap-6">
           <div className="max-w-2xl">
@@ -133,7 +171,7 @@ const KeyFeatures: React.FC = () => {
           </div>
           
           <button 
-            onClick={() => router.push('/compare')}
+            onClick={handleExploreAllClick}
             className="group flex items-center gap-2 text-[#0d98ba] font-semibold hover:gap-3 transition-all"
           >
             <span>Explore All Features</span>
@@ -162,7 +200,7 @@ const KeyFeatures: React.FC = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              onClick={() => router.push(feature.link)}
+              onClick={() => handleFeatureClick(feature)}
               className="group relative bg-white border border-gray-200 rounded-2xl p-8 cursor-pointer overflow-hidden"
               variants={{
                 hidden: {
@@ -399,7 +437,7 @@ const KeyFeatures: React.FC = () => {
               Join thousands of students who have successfully planned their study abroad experience with STAB
             </motion.p>
             <motion.button
-              onClick={() => router.push('/plan-journey')}
+              onClick={handleStartJourneyClick}
               className="px-8 py-4 bg-white text-[#0d98ba] rounded-xl font-semibold text-lg relative overflow-hidden"
               whileHover={{
                 scale: 1.05,
@@ -441,6 +479,7 @@ const KeyFeatures: React.FC = () => {
         </motion.div>
       </div>
     </section>
+    </>
   );
 };
 

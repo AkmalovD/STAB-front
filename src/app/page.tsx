@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/auth/AuthContext';
 import FeaturedDestinations from '../components/FeaturedDestinations';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -9,10 +10,12 @@ import KeyFeatures from '../components/KeyFeatures';
 import Testimonials from '../components/Testimonials';
 
 export default function Home() {
+  const { user } = useAuth();
+
   return (
     <>
       <Header />
-      <main className="pt-[65px]">
+      <main className={user ? "pt-[65px]" : ""}>
         <Hero />
         <HowItWorks />
         <FeaturedDestinations />

@@ -22,6 +22,11 @@ const Header: React.FC = () => {
     return `${baseClasses} ${isActiveRoute(path) ? activeClasses : inactiveClasses}`;
   };
 
+  // Don't render header if user is not authenticated
+  if (!user) {
+    return null;
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7eff3] px-10 py-3 bg-white shadow-md backdrop-blur-sm">
       <div className="flex items-center text-[#0d171b]">
