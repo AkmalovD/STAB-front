@@ -8,7 +8,7 @@ import React from 'react';
 
 const Header: React.FC = () => {
   const pathname = usePathname();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
   const isActiveRoute = (path: string): boolean => {
     return pathname === path;
@@ -22,9 +22,10 @@ const Header: React.FC = () => {
     return `${baseClasses} ${isActiveRoute(path) ? activeClasses : inactiveClasses}`;
   };
 
-  // Don't render header if user is not authenticated
+  // TEMPORARY: Show header while loading auth state
+  // TODO: Re-enable after fixing Supabase email confirmation
   if (!user) {
-    return null;
+    return null;  
   }
 
   return (
@@ -76,16 +77,16 @@ const Header: React.FC = () => {
             <Link 
               href="/profile" 
               className="flex items-center justify-center w-10 h-10 rounded-full bg-[#0d98ba] text-white font-bold text-sm hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#0d98ba] focus:ring-opacity-50 overflow-hidden"
-              title={user.displayName || user.email || 'Profile'}
+              title={user.user_metadata?.name || user.email || 'Profile'}
             >
-              {user.photoURL ? (
+              {user.user_metadata?.avatar_url ? (
                 <img 
-                  src={user.photoURL} 
+                  src={user.user_metadata.avatar_url} 
                   alt="User Avatar" 
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span>{(user.displayName || user.email || 'U').charAt(0).toUpperCase()}</span>
+                <span>{(user.user_metadata?.name || user.email || 'U').charAt(0).toUpperCase()}</span>
               )}
             </Link>
           ) : (
