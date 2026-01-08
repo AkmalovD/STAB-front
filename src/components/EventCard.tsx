@@ -1,5 +1,5 @@
-import React from 'react';
 import { Event } from '@/types';
+import React from 'react';
 
 interface EventCardProps {
   event: Event;
@@ -26,7 +26,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
 
   const getTypeColor = (type: string): string => {
     const colors: { [key: string]: string } = {
-      Virtual: 'bg-blue-100 text-blue-700',
+      Virtual: 'bg-[#0d98ba]/10 text-[#0d98ba]',
       Webinar: 'bg-purple-100 text-purple-700',
       Workshop: 'bg-green-100 text-green-700',
       Meetup: 'bg-orange-100 text-orange-700',

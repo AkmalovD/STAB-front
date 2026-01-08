@@ -74,6 +74,23 @@ const Hero: React.FC = () => {
             backgroundImage: `linear-gradient(135deg, rgba(13, 152, 186, 0.85) 0%, rgba(19, 164, 236, 0.85) 100%), url("https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1600")`
           }}
         >
+          {/* Sign In Button - Only visible when user is not logged in */}
+          {!user && (
+            <motion.button
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.3,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+              onClick={() => router.push('/login')}
+              className="absolute top-6 right-6 px-6 py-2.5 bg-[#0d98ba] text-white font-semibold rounded-lg hover:bg-[#0b7a96] transition-all duration-200 shadow-md hover:shadow-lg z-20"
+            >
+              Sign In
+            </motion.button>
+          )}
+
           {/* Floating background elements */}
           <motion.div
             className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"
@@ -177,7 +194,7 @@ const Hero: React.FC = () => {
                 <button
                   type="submit"
                   disabled={!validateSearchQuery(searchQuery) || isSearching}
-                  className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#13a4ec] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover:bg-[#1192d4] focus:outline-none focus:ring-2 focus:ring-[#13a4ec] focus:ring-opacity-50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#0d98ba] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover:bg-[#0d98ba] focus:outline-none focus:ring-2 focus:ring-[#0d98ba] focus:ring-opacity-50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="truncate">
                     {isSearching ? 'Searching...' : 'Start Planning'}

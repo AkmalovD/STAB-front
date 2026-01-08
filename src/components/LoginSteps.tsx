@@ -69,7 +69,7 @@ const LoginStep1: React.FC =  () => {
                 {/*  Login Button  */}
                     <button
                         type="submit"
-                        className="w-full bg-[#0d98ba] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0284c7] transition-colors"
+                        className="w-full bg-[#0d98ba] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0d98ba] transition-colors"
                     >
                         Sign in
 

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { JourneyProfile } from '@/types';
-import { toast } from 'sonner';
 import { journeyProfileApi } from '@/services/profileApi';
+import { JourneyProfile } from '@/types';
+import React, { useState } from 'react';
+import { toast } from 'sonner';
 
 interface OnboardingModalProps {
   isOpen: boolean;
@@ -107,7 +107,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({ isOpen, onComplete, o
                   autoFocus
                 />
               </div>
-              <div className="bg-blue-50 p-4 rounded-lg">
+              <div className="bg-[#0d98ba]/5 p-4 rounded-lg">
                 <p className="text-sm text-gray-600">
                   We'll use this to personalize your journey plan
                 </p>

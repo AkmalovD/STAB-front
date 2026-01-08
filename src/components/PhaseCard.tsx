@@ -1,20 +1,20 @@
 import { Phase, Task } from '@/types';
 import { getPhaseProgress } from '@/utils/journeyData';
 import {
-  AlertCircle,
-  Calendar,
-  CheckCircle2,
-  ChevronDown,
-  Circle,
-  Clock,
-  Compass,
-  FileText,
-  Lock,
-  PartyPopper,
-  Plane,
-  Send,
-  Stamp,
-  Wallet
+    AlertCircle,
+    Calendar,
+    CheckCircle2,
+    ChevronDown,
+    Circle,
+    Clock,
+    Compass,
+    FileText,
+    Lock,
+    PartyPopper,
+    Plane,
+    Send,
+    Stamp,
+    Wallet
 } from 'lucide-react';
 import React, { useState } from 'react';
 
@@ -55,9 +55,9 @@ const PhaseCard: React.FC<PhaseCardProps> = ({ phase, onTaskToggle }) => {
         return {
           icon: Clock,
           label: 'In Progress',
-          color: 'text-blue-600',
-          bgColor: 'bg-blue-100',
-          gradient: 'from-[#0d98ba] to-[#13a4ec]',
+          color: 'text-[#0d98ba]',
+          bgColor: 'bg-[#0d98ba]/10',
+          gradient: 'from-[#0d98ba] to-[#0d98ba]',
         };
       case 'locked':
         return {
@@ -252,12 +252,12 @@ const PhaseCard: React.FC<PhaseCardProps> = ({ phase, onTaskToggle }) => {
 
         {/* Tip Section for Active Phases */}
         {phase.status === 'in-progress' && (
-          <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+          <div className="mt-6 p-4 bg-gradient-to-r from-[#0d98ba]/5 to-[#0d98ba]/10 rounded-lg border border-[#0d98ba]/20">
+            <div className="flex gap-3">
+              <AlertCircle className="w-5 h-5 text-[#0d98ba] flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-semibold text-blue-900 mb-1">Pro Tip</p>
-                <p className="text-sm text-blue-800 leading-relaxed">
+                <p className="text-sm font-semibold text-[#0d98ba] mb-1">Pro Tip</p>
+                <p className="text-sm text-[#0d98ba]/80 leading-relaxed">
                   Focus on high-priority tasks first to make the most progress. Break down complex tasks into smaller, manageable steps for better organization.
                 </p>
               </div>

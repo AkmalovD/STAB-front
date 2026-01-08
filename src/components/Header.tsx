@@ -69,7 +69,7 @@ const Header: React.FC = () => {
       <div className="flex gap-2 items-center">
           <Link 
             href="/plan-journey"
-            className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#0d98ba] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#1192d4] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#13a4ec] focus:ring-opacity-50"
+            className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#0d98ba] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#0d98ba] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#0d98ba] focus:ring-opacity-50"
           >
             <span className="truncate">Plan My Journey</span>
           </Link>

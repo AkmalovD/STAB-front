@@ -233,7 +233,7 @@ const SignUpPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[#0d98ba] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0284c7] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#0d98ba] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0d98ba] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? 'Создание аккаунта...' : 'Sign Up'}
               </button>

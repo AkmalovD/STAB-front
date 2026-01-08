@@ -1,11 +1,11 @@
-import React from 'react';
 import { CityCardProps } from '@/types';
+import React from 'react';
 
 const CityCard: React.FC<CityCardProps> = ({ city, isSelected, onSelect }) => {
   return (
     <div className={`
       relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer group
-      ${isSelected ? 'ring-2 ring-[#13a4ec] shadow-xl' : 'hover:shadow-lg'}
+      ${isSelected ? 'ring-2 ring-[#0d98ba] shadow-xl' : 'hover:shadow-lg'}
     `}
     onClick={onSelect}
     >
@@ -19,7 +19,7 @@ const CityCard: React.FC<CityCardProps> = ({ city, isSelected, onSelect }) => {
         
         {/* Selection Badge */}
         {isSelected && (
-          <div className="absolute top-3 right-3 bg-[#13a4ec] text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+          <div className="absolute top-3 right-3 bg-[#0d98ba] text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
             </svg>
@@ -79,7 +79,7 @@ const CityCard: React.FC<CityCardProps> = ({ city, isSelected, onSelect }) => {
           className={`
             w-full py-2 px-4 rounded-lg font-medium text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-opacity-50
             ${isSelected 
-              ? 'bg-[#13a4ec] text-white hover:bg-[#1192d4] focus:ring-[#13a4ec]' 
+              ? 'bg-[#0d98ba] text-white hover:bg-[#0d98ba] focus:ring-[#0d98ba]' 
               : 'bg-[#e7eff3] text-[#0d171b] hover:bg-[#d1e7f1] focus:ring-[#e7eff3]'
             }
           `}

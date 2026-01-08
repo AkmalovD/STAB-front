@@ -184,7 +184,7 @@ export default function PlanJourney() {
 
               <button
                 onClick={handleStartPlanning}
-                className="px-10 py-5 bg-gradient-to-r from-[#0d98ba] to-[#13a4ec] text-white rounded-xl font-bold text-xl hover:shadow-2xl transition-all hover:scale-105 inline-flex items-center gap-3"
+                className="px-10 py-5 bg-gradient-to-r from-[#0d98ba] to-[#0d98ba] text-white rounded-xl font-bold text-xl hover:shadow-2xl transition-all hover:scale-105 inline-flex items-center gap-3"
               >
                 <span>Start Planning My Journey</span>
               </button>
@@ -268,7 +268,7 @@ export default function PlanJourney() {
               </div>
 
               {/* Tips Section */}
-              <div className="mt-10 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-8">
+              <div className="mt-10 bg-gradient-to-r from-purple-50 to-[#0d98ba]/5 rounded-xl p-8">
                 <h3 className="text-2xl font-bold text-[#0d171b] mb-4">Pro Tips</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-white rounded-lg p-4">

@@ -1,17 +1,17 @@
 import { Document } from '@/types';
 import {
-  AlertCircle,
-  Calendar,
-  CheckCircle2,
-  Circle,
-  Clock,
-  DollarSign,
-  FileCheck,
-  FileText,
-  Folder,
-  GraduationCap,
-  User,
-  XCircle,
+    AlertCircle,
+    Calendar,
+    CheckCircle2,
+    Circle,
+    Clock,
+    DollarSign,
+    FileCheck,
+    FileText,
+    Folder,
+    GraduationCap,
+    User,
+    XCircle,
 } from 'lucide-react';
 import React from 'react';
 
@@ -91,17 +91,17 @@ const DocumentStatus: React.FC<DocumentStatusProps> = ({ documents, onStatusChan
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-[#0d98ba] to-[#13a4ec] px-6 py-5">
+      <div className="bg-gradient-to-r from-[#0d98ba] to-[#0d98ba] px-6 py-5">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-white mb-1">Document Checklist</h2>
-            <p className="text-blue-100 text-sm">Track all required documents for your application</p>
+            <p className="text-white/80 text-sm">Track all required documents for your application</p>
           </div>
           <div className="text-right bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3">
             <div className="text-3xl font-bold text-white">
               {readyCount}/{totalRequired}
             </div>
-            <div className="text-xs text-blue-100 font-medium">Documents Ready</div>
+            <div className="text-xs text-white/80 font-medium">Documents Ready</div>
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@ const DocumentStatus: React.FC<DocumentStatusProps> = ({ documents, onStatusChan
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
             <div
-              className="bg-gradient-to-r from-[#0d98ba] to-[#13a4ec] h-2.5 rounded-full transition-all duration-500 ease-out"
+              className="bg-gradient-to-r from-[#0d98ba] to-[#0d98ba] h-2.5 rounded-full transition-all duration-500 ease-out"
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
@@ -230,12 +230,12 @@ const DocumentStatus: React.FC<DocumentStatusProps> = ({ documents, onStatusChan
         </div>
 
         {/* Tip Section */}
-        <div className="mt-8 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-100">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+        <div className="mt-8 p-4 bg-gradient-to-r from-[#0d98ba]/5 to-[#0d98ba]/10 rounded-lg border border-[#0d98ba]/20">
+          <div className="flex gap-3">
+            <AlertCircle className="w-5 h-5 text-[#0d98ba] flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-semibold text-blue-900 mb-1">Pro Tip</p>
-              <p className="text-sm text-blue-800 leading-relaxed">
+              <p className="text-sm font-semibold text-[#0d98ba] mb-1">Pro Tip</p>
+              <p className="text-sm text-[#0d98ba]/80 leading-relaxed">
                 Start gathering documents early! Some documents like transcripts and recommendation letters can take several weeks to obtain. Plan ahead to avoid last-minute delays.
               </p>
             </div>

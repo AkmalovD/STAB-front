@@ -264,7 +264,7 @@ const HowItWorks: React.FC = () => {
             }}
           >
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#13a4ec] to-[#0d98ba] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
+              className="absolute inset-0 bg-gradient-to-r from-[#0d98ba] to-[#0d98ba] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
               initial={false}
             />
             <motion.span

@@ -1,5 +1,5 @@
-import React from 'react';
 import { StudentStory } from '@/types';
+import React from 'react';
 
 interface StoryCardProps {
   story: StudentStory;
@@ -30,7 +30,7 @@ const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
 
         {/* Budget and scholarship info */}
         <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="bg-blue-50 p-3 rounded-lg">
+          <div className="bg-[#0d98ba]/5 p-3 rounded-lg">
             <p className="text-xs text-gray-600 mb-1">Annual Budget</p>
             <p className="font-bold text-[#0d98ba]">{story.budget}</p>
           </div>

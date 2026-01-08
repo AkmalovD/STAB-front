@@ -65,7 +65,7 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-[#0d98ba] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0284c7] transition-colors;
+    @apply bg-[#0d98ba] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0d98ba] transition-colors;
   }
   
   .btn-secondary {
@@ -83,7 +83,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-[#0d98ba] to-[#0369a1] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#0d98ba] to-[#0d98ba] bg-clip-text text-transparent;
   }
 }
 

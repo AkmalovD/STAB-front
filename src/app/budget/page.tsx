@@ -115,7 +115,7 @@ export default function Budget() {
             {/* Left Column - Input Forms */}
             <div className="lg:col-span-3 flex flex-col gap-6">
               {/* Income & Savings Card */}
-              <div className="bg-white rounded-2xl shadow-lg border border-blue-100 p-8 hover:shadow-xl transition-shadow">
+              <div className="bg-white rounded-2xl shadow-lg border border-[#0d98ba]/20 p-8 hover:shadow-xl transition-shadow">
                 <div className="flex items-center gap-3 mb-6">
                   <h2 className="text-[#0d171b] text-2xl font-bold">
                     Income & Savings
@@ -171,7 +171,7 @@ export default function Budget() {
               </div>
 
               {/* Monthly Expenses Card */}
-              <div className="bg-white rounded-2xl shadow-lg border border-blue-100 p-8 hover:shadow-xl transition-shadow">
+              <div className="bg-white rounded-2xl shadow-lg border border-[#0d98ba]/20 p-8 hover:shadow-xl transition-shadow">
                 <div className="flex items-center gap-3 mb-6">
                   <h2 className="text-[#0d171b] text-2xl font-bold">
                     Monthly Expenses
@@ -287,7 +287,7 @@ export default function Budget() {
 
                   <button
                     onClick={addCustomExpense}
-                    className="flex items-center justify-center mt-7 gap-3 rounded-xl border-2 border-dashed border-gray-300 h-14 text-gray-600 hover:bg-blue-50 hover:border-[#0d98ba] transition-all hover:scale-[1.02] group"
+                    className="flex items-center justify-center mt-7 gap-3 rounded-xl border-2 border-dashed border-gray-300 h-14 text-gray-600 hover:bg-[#0d98ba]/5 hover:border-[#0d98ba] transition-all hover:scale-[1.02] group"
                   >
                     <span className="text-2xl group-hover:scale-110 transition-transform">+</span>
                     <span className="text-sm font-semibold">Add Custom Expense</span>
@@ -334,19 +334,19 @@ export default function Budget() {
                 <div
                   className={`flex flex-col gap-1 p-4 rounded-lg border mb-6 ${
                     isPositive
-                      ? 'bg-blue-50 border-blue-500'
+                      ? 'bg-[#0d98ba]/5 border-[#0d98ba]'
                       : 'bg-gray-50 border-gray-400'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <p className={`text-sm font-medium ${isPositive ? 'text-blue-800' : 'text-gray-700'}`}>
+                    <p className={`text-sm font-medium ${isPositive ? 'text-[#0d98ba]' : 'text-gray-700'}`}>
                       Estimated Monthly Balance
                     </p>
                   </div>
-                  <p className={`text-3xl font-bold ${isPositive ? 'text-blue-800' : 'text-gray-700'}`}>
+                  <p className={`text-3xl font-bold ${isPositive ? 'text-[#0d98ba]' : 'text-gray-700'}`}>
                     ${Math.abs(monthlyBalance).toLocaleString()}
                   </p>
-                  <p className={`text-xs ${isPositive ? 'text-blue-700' : 'text-gray-600'}`}>
+                  <p className={`text-xs ${isPositive ? 'text-[#0d98ba]' : 'text-gray-600'}`}>
                     {isPositive ? 'You have a projected surplus.' : 'You have a projected deficit.'}
                   </p>
                 </div>

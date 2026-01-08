@@ -60,7 +60,7 @@ export default function Profile() {
             <div className="flex flex-col md:flex-row items-start md:items-end -mt-20 mb-6">
               {/* Avatar */}
               <div className="relative group">
-                <div className="w-40 h-40 rounded-full border-4 border-white bg-gradient-to-br from-[#0d98ba] to-[#0369a1] flex items-center justify-center text-white text-5xl font-bold shadow-xl">
+                <div className="w-40 h-40 rounded-full border-4 border-white bg-gradient-to-br from-[#0d98ba] to-[#0d98ba] flex items-center justify-center text-white text-5xl font-bold shadow-xl">
                   {user?.photoURL ? (
                     <img src={user.photoURL} alt="Profile" className="w-full h-full rounded-full object-cover" />
                   ) : (
@@ -84,7 +84,7 @@ export default function Profile() {
                   </div>
                   <button
                     onClick={() => isEditing ? handleSave() : setIsEditing(true)}
-                    className="mt-4 md:mt-0 px-6 py-2.5 bg-[#0d98ba] text-white rounded-lg font-medium hover:bg-[#0284c7] transition-colors shadow-sm hover:shadow-md flex items-center gap-2"
+                    className="mt-4 md:mt-0 px-6 py-2.5 bg-[#0d98ba] text-white rounded-lg font-medium hover:bg-[#0d98ba] transition-colors shadow-sm hover:shadow-md flex items-center gap-2"
                   >
                     {isEditing ? (
                       <>
@@ -190,7 +190,7 @@ export default function Profile() {
                   </div>
                 </div>
                 <div className="overflow-hidden h-3 text-xs flex rounded-full bg-gray-100">
-                  <div style={{ width: '85%' }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-[#0d98ba] to-[#0369a1] rounded-full"></div>
+                  <div style={{ width: '85%' }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-[#0d98ba] to-[#0d98ba] rounded-full"></div>
                 </div>
               </div>
               <p className="mt-4 text-sm text-[#4c809a]">Almost there! Complete your study preferences to get better recommendations.</p>

@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { City } from '@/types';
 import { citiesData, searchCities } from '@/utils/data';
+import { useSearchParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import CityCard from './CityCard';
 import CostBreakdown from './CostBreakdown';
 import CurrencyConverter from './CurrencyConverter';
@@ -71,8 +71,8 @@ const CityComparison: React.FC = () => {
         {/* Header Card */}
         <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
           <div className="flex items-start gap-4 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-[#13a4ec]/10 flex items-center justify-center flex-shrink-0">
-              <svg className="w-6 h-6 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="w-12 h-12 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center flex-shrink-0">
+              <svg className="w-6 h-6 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                 <circle cx="12" cy="10" r="3"/>
               </svg>
@@ -90,15 +90,15 @@ const CityComparison: React.FC = () => {
           {selectedCities.length > 0 && (
             <div className="flex items-center justify-between pt-6 border-t border-gray-100">
               <div className="flex items-center gap-3">
-                <div className="px-4 py-2 rounded-lg bg-[#13a4ec]/10 border border-[#13a4ec]/20">
-                  <span className="text-sm font-bold text-[#13a4ec]">
+                <div className="px-4 py-2 rounded-lg bg-[#0d98ba]/10 border border-[#0d98ba]/20">
+                  <span className="text-sm font-bold text-[#0d98ba]">
                     {selectedCities.length} / 4 Cities Selected
                   </span>
                 </div>
               </div>
               <button
                 onClick={clearSelection}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-white text-[#13a4ec] border border-[#13a4ec]/20 hover:bg-[#13a4ec] hover:text-white transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-white text-[#0d98ba] border border-[#0d98ba]/20 hover:bg-[#0d98ba] hover:text-white transition-colors"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <line x1="18" y1="6" x2="6" y2="18"/>
@@ -113,8 +113,8 @@ const CityComparison: React.FC = () => {
         {/* City Selection Card */}
         <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-[#13a4ec]/10 flex items-center justify-center">
-              <svg className="w-5 h-5 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="w-10 h-10 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center">
+              <svg className="w-5 h-5 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8"/>
                 <path d="m21 21-4.35-4.35"/>
               </svg>
@@ -136,12 +136,12 @@ const CityComparison: React.FC = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search by city or country name..."
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#13a4ec] focus:border-[#13a4ec] text-[#0d171b]"
+                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d98ba] focus:border-[#0d98ba] text-[#0d171b]"
               />
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#4c809a] hover:text-[#13a4ec]"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#4c809a] hover:text-[#0d98ba]"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="18" y1="6" x2="6" y2="18"/>
@@ -167,7 +167,7 @@ const CityComparison: React.FC = () => {
           {filteredCities.length > 6 && (
             <button
               onClick={() => setShowAllCities(!showAllCities)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold rounded-lg bg-white text-[#13a4ec] border border-[#13a4ec]/20 hover:bg-[#13a4ec] hover:text-white transition-colors"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold rounded-lg bg-white text-[#0d98ba] border border-[#0d98ba]/20 hover:bg-[#0d98ba] hover:text-white transition-colors"
             >
               <span>{showAllCities ? 'Show Less' : `Show All ${filteredCities.length} Cities`}</span>
               <svg 
@@ -196,8 +196,8 @@ const CityComparison: React.FC = () => {
             {/* Cost Breakdown Card */}
             <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#13a4ec]/10 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <div className="w-10 h-10 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="12" y1="1" x2="12" y2="23"/>
                     <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                   </svg>
@@ -212,8 +212,8 @@ const CityComparison: React.FC = () => {
             {/* Visual Analysis Card */}
             <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#13a4ec]/10 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <div className="w-10 h-10 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="18" y1="20" x2="18" y2="10"/>
                     <line x1="12" y1="20" x2="12" y2="4"/>
                     <line x1="6" y1="20" x2="6" y2="14"/>
@@ -229,8 +229,8 @@ const CityComparison: React.FC = () => {
             {/* Tips Card */}
             <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#13a4ec]/10 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <div className="w-10 h-10 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="12" cy="12" r="10"/>
                     <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
                     <line x1="12" y1="17" x2="12.01" y2="17"/>
@@ -243,8 +243,8 @@ const CityComparison: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-[#f8fafc] rounded-xl p-5 border border-gray-100">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-[#13a4ec]/10 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-8 h-8 rounded-lg bg-[#0d98ba]/10 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                       </svg>
                     </div>
@@ -256,8 +256,8 @@ const CityComparison: React.FC = () => {
                 </div>
                 <div className="bg-[#f8fafc] rounded-xl p-5 border border-gray-100">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-[#13a4ec]/10 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-8 h-8 rounded-lg bg-[#0d98ba]/10 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M3 3v18h18"/>
                         <path d="m19 9-5 5-4-4-3 3"/>
                       </svg>
@@ -270,8 +270,8 @@ const CityComparison: React.FC = () => {
                 </div>
                 <div className="bg-[#f8fafc] rounded-xl p-5 border border-gray-100">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-[#13a4ec]/10 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-8 h-8 rounded-lg bg-[#0d98ba]/10 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="12" cy="12" r="10"/>
                         <line x1="12" y1="8" x2="12" y2="12"/>
                         <line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -285,8 +285,8 @@ const CityComparison: React.FC = () => {
                 </div>
                 <div className="bg-[#f8fafc] rounded-xl p-5 border border-gray-100">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-[#13a4ec]/10 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="w-8 h-8 rounded-lg bg-[#0d98ba]/10 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                         <circle cx="9" cy="7" r="4"/>
                         <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
@@ -306,8 +306,8 @@ const CityComparison: React.FC = () => {
           /* Empty State */
           <div className="bg-white border border-gray-200 rounded-2xl p-16 shadow-sm">
             <div className="flex flex-col items-center justify-center text-center">
-              <div className="w-20 h-20 rounded-2xl bg-[#13a4ec]/10 flex items-center justify-center mb-6">
-                <svg className="w-10 h-10 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <div className="w-20 h-20 rounded-2xl bg-[#0d98ba]/10 flex items-center justify-center mb-6">
+                <svg className="w-10 h-10 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
@@ -318,11 +318,11 @@ const CityComparison: React.FC = () => {
               <p className="text-[#4c809a] max-w-md mb-6 text-base">
                 Select cities from above to see detailed cost comparisons, living expenses, and educational opportunities side by side.
               </p>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#13a4ec]/10 border border-[#13a4ec]/20">
-                <svg className="w-5 h-5 text-[#13a4ec]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0d98ba]/10 border border-[#0d98ba]/20">
+                <svg className="w-5 h-5 text-[#0d98ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                 </svg>
-                <span className="text-sm font-semibold text-[#13a4ec]">
+                <span className="text-sm font-semibold text-[#0d98ba]">
                   Select up to 4 cities to begin
                 </span>
               </div>

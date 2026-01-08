@@ -353,7 +353,7 @@ const KeyFeatures: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="mt-16 bg-gradient-to-r from-[#0d98ba] to-[#13a4ec] rounded-3xl p-8 md:p-12 text-center relative overflow-hidden"
+          className="mt-16 bg-gradient-to-r from-[#0d98ba] to-[#0d98ba] rounded-3xl p-8 md:p-12 text-center relative overflow-hidden"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -463,7 +463,7 @@ const KeyFeatures: React.FC = () => {
                 Get Started for Free
               </motion.span>
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#0d98ba] to-[#13a4ec] rounded-xl"
+                className="absolute inset-0 bg-gradient-to-r from-[#0d98ba] to-[#0d98ba] rounded-xl"
                 initial={{ scaleX: 0 }}
                 whileHover={{ scaleX: 1 }}
                 transition={{ duration: 0.3 }}

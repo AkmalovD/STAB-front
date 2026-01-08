@@ -85,7 +85,7 @@ const ForgotPasswordPage: React.FC = () => {
 
                 <Link
                   href="/login"
-                  className="block w-full bg-[#0d98ba] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0284c7] transition-colors"
+                  className="block w-full bg-[#0d98ba] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0d98ba] transition-colors"
                 >
                   Вернуться к входу
                 </Link>
@@ -162,7 +162,7 @@ const ForgotPasswordPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[#0d98ba] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0284c7] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#0d98ba] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0d98ba] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? 'Отправка...' : 'Отправить инструкции'}
               </button>

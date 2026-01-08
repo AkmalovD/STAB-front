@@ -1,17 +1,17 @@
 import { Phase } from '@/types';
 import { calculateOverallProgress, getDaysUntilDate } from '@/utils/journeyData';
 import {
-  Calendar,
-  CheckCircle2,
-  ChevronRight,
-  DollarSign,
-  FileCheck,
-  FileText,
-  Plane,
-  Search,
-  Shield,
-  Target,
-  TrendingUp,
+    Calendar,
+    CheckCircle2,
+    ChevronRight,
+    DollarSign,
+    FileCheck,
+    FileText,
+    Plane,
+    Search,
+    Shield,
+    Target,
+    TrendingUp,
 } from 'lucide-react';
 import React from 'react';
 
@@ -59,7 +59,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({ phases, startDate
     .slice(0, 3);
 
   return (
-    <div className="bg-gradient-to-br from-[#0d98ba] to-[#13a4ec] rounded-xl shadow-lg border border-white/10 overflow-hidden mb-8">
+    <div className="bg-gradient-to-br from-[#0d98ba] to-[#0d98ba] rounded-xl shadow-lg border border-white/10 overflow-hidden mb-8">
       {/* Header Section */}
       <div className="p-6 pb-4">
         <div className="flex items-center justify-between mb-6">
