@@ -1,8 +1,8 @@
 'use client'
 
-import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth"
-import { auth } from "./firebase"
-import { FirebaseError } from "firebase/app"
+import { FirebaseError } from "firebase/app";
+import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "./supabase";
 
 
 // Google
