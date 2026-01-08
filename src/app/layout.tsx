@@ -60,16 +60,25 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${sfPro.variable}`}>
       <body 
-        className={`relative flex h-auto min-h-screen w-full flex-col bg-slate-50 group/design-root overflow-x-hidden font-sans ${sfPro.className}`}
+        className={`relative flex min-h-screen w-full flex-col bg-white overflow-x-hidden font-sans antialiased ${sfPro.className}`}
       >
         <AuthProvider>
-          <div className="layout-container flex h-full grow flex-col">
+          <div className="flex flex-col min-h-screen">
             {children}
           </div>
         </AuthProvider>
-        <Toaster richColors position="top-right" />
+        <Toaster 
+          richColors 
+          position="top-right" 
+          toastOptions={{
+            style: {
+              background: '#ffffff',
+              border: '1px solid #e2e8f0',
+              color: '#0f172a',
+            },
+          }}
+        />
       </body>
     </html>
   )
 }
-

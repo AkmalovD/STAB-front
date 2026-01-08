@@ -56,7 +56,6 @@ const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Auto-play carousel
   useEffect(() => {
     if (!isAutoPlaying) return;
 
@@ -87,109 +86,99 @@ const Testimonials: React.FC = () => {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="px-4 md:px-10 lg:px-40 py-20 bg-white relative">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <div className="inline-block px-4 py-1.5 bg-[#f8fafc] border border-[#0d98ba]/20 rounded-full mb-4">
-            <span className="text-sm font-medium text-[#0d98ba]">Student Success</span>
-          </div>
-          <motion.h2 
+    <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-grid opacity-20" />
+      <motion.div
+        className="absolute top-1/3 right-0 w-80 h-80 rounded-full bg-[#0d98ba]/5 blur-3xl"
+        animate={{ x: [0, -30, 0], opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-1/3 left-0 w-96 h-96 rounded-full bg-[#0d98ba]/5 blur-3xl"
+        animate={{ x: [0, 40, 0], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16 lg:mb-20">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-4xl md:text-5xl font-bold text-[#0d171b] mb-4 max-w-2xl"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0d98ba]/10 border border-[#0d98ba]/20 mb-6"
           >
-            What Our Students Say
+            <span className="text-sm font-medium text-[#0d98ba]">Student Success</span>
+          </motion.div>
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0f172a] mb-6"
+          >
+            What Our{' '}
+            <span className="text-[#0d98ba]">
+              Students Say
+            </span>
           </motion.h2>
-          <p className="text-lg text-[#4c809a] max-w-2xl">
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg text-[#64748b] max-w-2xl mx-auto"
+          >
             Join thousands of students who successfully planned their study abroad journey
-          </p>
+          </motion.p>
         </div>
 
+        {/* Testimonial Carousel */}
         <div className="relative max-w-4xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{
-                opacity: 0,
-                x: 100,
-                scale: 0.95,
-                rotateY: 20
-              }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                rotateY: 0
-              }}
-              exit={{
-                opacity: 0,
-                x: -100,
-                scale: 0.95,
-                rotateY: -20
-              }}
-              transition={{
-                duration: 0.6,
-                ease: [0.25, 0.46, 0.45, 0.94],
-                type: "spring",
-                stiffness: 120
-              }}
-              className="relative"
+              initial={{ opacity: 0, x: 100, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -100, scale: 0.95 }}
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <motion.div
-                className="relative bg-white border border-gray-200 rounded-2xl p-8 md:p-12 shadow-lg"
-                whileHover={{
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)",
-                  borderColor: "#0d98ba",
-                  transition: { duration: 0.3 }
-                }}
-                layout
-              >
+              <div className="glass-card p-8 md:p-12 relative">
+                {/* Quote Icon */}
                 <motion.div
-                  className="absolute -top-3 -left-3 w-14 h-14 bg-[#0d98ba] rounded-xl flex items-center justify-center shadow-lg"
+                  className="absolute -top-4 -left-4 w-12 h-12 bg-[#0d98ba] rounded-xl flex items-center justify-center shadow-lg"
                   initial={{ scale: 0, rotate: -180 }}
                   animate={{ scale: 1, rotate: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.3,
-                    type: "spring",
-                    stiffness: 200
-                  }}
-                  whileHover={{
-                    scale: 1.1,
-                    rotate: 10,
-                    transition: { duration: 0.2 }
-                  }}
+                  transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 200 }}
                 >
-                  <span className="text-white font-bold text-xl">
-                    {currentTestimonial.name.split(' ').map(n => n[0]).join('')}
-                  </span>
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
                 </motion.div>
 
+                {/* Rating Stars */}
                 <motion.div
-                  className="mt-6 mb-6 flex items-center gap-1"
+                  className="flex items-center gap-1 mb-6 mt-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
                 >
                   {[...Array(currentTestimonial.rating)].map((_, i) => (
                     <motion.svg
                       key={i}
-                      className="w-5 h-5 text-yellow-400 fill-current"
+                      className="w-5 h-5 text-[#0d98ba] fill-current"
                       viewBox="0 0 20 20"
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{
-                        duration: 0.4,
-                        delay: 0.5 + i * 0.1,
+                        duration: 0.3,
+                        delay: 0.4 + i * 0.1,
                         type: "spring",
                         stiffness: 150
-                      }}
-                      whileHover={{
-                        scale: 1.2,
-                        rotate: 10,
-                        transition: { duration: 0.2 }
                       }}
                     >
                       <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
@@ -197,202 +186,141 @@ const Testimonials: React.FC = () => {
                   ))}
                 </motion.div>
 
-                <motion.div
-                  className="relative mb-8"
+                {/* Testimonial Text */}
+                <motion.p
+                  className="text-xl md:text-2xl text-[#0f172a] leading-relaxed mb-8 font-light"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
                 >
-                  <motion.svg
-                    className="absolute -top-4 -left-2 w-10 h-10 text-[#0d98ba] opacity-20"
-                    fill="currentColor"
-                    viewBox="0 0 32 32"
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      rotate: [0, 5, 0]
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                  </motion.svg>
-                  <motion.p
-                    className="text-lg md:text-xl text-[#0d171b] leading-relaxed pl-8"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                  >
-                    "{currentTestimonial.text}"
-                  </motion.p>
-                </motion.div>
+                  "{currentTestimonial.text}"
+                </motion.p>
 
+                {/* Author Info */}
                 <motion.div
-                  className="pt-6 border-t border-gray-100"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.9 }}
+                  className="flex items-center gap-4 pt-6 border-t border-[#e2e8f0]"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
                 >
-                  <motion.h3
-                    className="text-xl font-bold text-[#0d171b] mb-3"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 1 }}
-                  >
-                    {currentTestimonial.name}
-                  </motion.h3>
+                  {/* Avatar */}
                   <motion.div
-                    className="flex flex-wrap gap-2"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.1 }}
+                    className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-[#0d98ba]/30"
+                    whileHover={{ scale: 1.1 }}
                   >
-                    {[
-                      { text: currentTestimonial.university, icon: "🎓" },
-                      { text: currentTestimonial.country, icon: "📍" }
-                    ].map((item, index) => (
-                      <motion.span
-                        key={index}
-                        className="text-xs px-3 py-1 bg-[#f8fafc] text-[#0d98ba] rounded-full border border-[#0d98ba]/20"
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{
-                          duration: 0.4,
-                          delay: 1.2 + index * 0.1,
-                          type: "spring",
-                          stiffness: 150
-                        }}
-                        whileHover={{
-                          scale: 1.05,
-                          backgroundColor: "#0d98ba",
-                          color: "white",
-                          transition: { duration: 0.2 }
-                        }}
-                      >
-                        {item.icon} {item.text}
-                      </motion.span>
-                    ))}
+                    <img 
+                      src={currentTestimonial.image} 
+                      alt={currentTestimonial.name}
+                      className="w-full h-full object-cover"
+                    />
                   </motion.div>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-[#0f172a]">
+                      {currentTestimonial.name}
+                    </h4>
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      <span className="text-xs px-2 py-1 bg-[#0d98ba]/10 text-[#0d98ba] rounded-full">
+                        {currentTestimonial.university}
+                      </span>
+                      <span className="text-xs px-2 py-1 bg-[#0d98ba]/10 text-[#0d98ba] rounded-full">
+                        {currentTestimonial.country}
+                      </span>
+                    </div>
+                  </div>
                 </motion.div>
-              </motion.div>
+              </div>
             </motion.div>
           </AnimatePresence>
 
           {/* Navigation Arrows */}
           <motion.button
             onClick={goToPrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 w-12 h-12 bg-white border border-gray-200 rounded-xl shadow-md flex items-center justify-center group overflow-hidden"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 w-12 h-12 glass-card flex items-center justify-center hover:bg-[#0d98ba]/10 transition-colors duration-300"
             aria-label="Previous testimonial"
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: "#0d98ba",
-              borderColor: "#0d98ba",
-              boxShadow: "0 10px 25px -8px rgba(13, 152, 186, 0.3)",
-              x: -5
-            }}
+            whileHover={{ scale: 1.1, x: -5 }}
             whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 1.5 }}
           >
-            <motion.div
-              className="absolute inset-0 bg-[#0d98ba] rounded-xl"
-              initial={{ scaleX: 0 }}
-              whileHover={{ scaleX: 1 }}
-              transition={{ duration: 0.3 }}
-              style={{ originX: 0 }}
-            />
-            <motion.svg
-              className="w-6 h-6 relative z-10"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              whileHover={{ x: -2 }}
-              transition={{ duration: 0.2 }}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </motion.svg>
+            <svg className="w-5 h-5 text-[#0f172a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
           </motion.button>
 
           <motion.button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 w-12 h-12 bg-white border border-gray-200 rounded-xl shadow-md flex items-center justify-center group overflow-hidden"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 w-12 h-12 glass-card flex items-center justify-center hover:bg-[#0d98ba]/10 transition-colors duration-300"
             aria-label="Next testimonial"
-            whileHover={{
-              scale: 1.1,
-              backgroundColor: "#0d98ba",
-              borderColor: "#0d98ba",
-              boxShadow: "0 10px 25px -8px rgba(13, 152, 186, 0.3)",
-              x: 5
-            }}
+            whileHover={{ scale: 1.1, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 1.5 }}
           >
-            <motion.div
-              className="absolute inset-0 bg-[#0d98ba] rounded-xl"
-              initial={{ scaleX: 0 }}
-              whileHover={{ scaleX: 1 }}
-              transition={{ duration: 0.3 }}
-              style={{ originX: 1 }}
-            />
-            <motion.svg
-              className="w-6 h-6 relative z-10"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              whileHover={{ x: 2 }}
-              transition={{ duration: 0.2 }}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </motion.svg>
+            <svg className="w-5 h-5 text-[#0f172a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </motion.button>
         </div>
 
         {/* Dots Indicator */}
         <motion.div
-          className="flex items-center justify-center gap-2 mt-12"
+          className="flex items-center justify-center gap-3 mt-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 1.7 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
           {testimonials.map((_, index) => (
             <motion.button
               key={index}
               onClick={() => goToSlide(index)}
-              className="h-2 rounded-full relative overflow-hidden"
+              className="relative h-2 rounded-full overflow-hidden transition-all duration-300"
               animate={{
                 width: index === currentIndex ? 32 : 8,
-                backgroundColor: index === currentIndex ? "#0d98ba" : "#d1d5db"
+                backgroundColor: index === currentIndex ? "#0d98ba" : "#cbd5e1"
               }}
-              whileHover={{
-                scale: 1.2,
-                backgroundColor: index === currentIndex ? "#0d98ba" : "#9ca3af"
-              }}
+              whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
-              transition={{
-                duration: 0.3,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
               aria-label={`Go to testimonial ${index + 1}`}
             >
               {index === currentIndex && (
                 <motion.div
-                  className="absolute inset-0 bg-white/30 rounded-full"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0 bg-[#0d98ba]"
+                  layoutId="activeIndicator"
                 />
               )}
             </motion.button>
           ))}
+        </motion.div>
+
+        {/* Logo Carousel - Partner Universities */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-20 pt-12 border-t border-[#e2e8f0]"
+        >
+          <p className="text-center text-sm text-[#64748b] mb-8">Trusted by students from top universities worldwide</p>
+          
+          <div className="relative overflow-hidden">
+            <div className="flex animate-scroll">
+              {[...Array(2)].map((_, setIndex) => (
+                <div key={setIndex} className="flex items-center gap-16 px-8">
+                  {['Oxford', 'MIT', 'Stanford', 'Cambridge', 'Harvard', 'ETH Zurich'].map((uni, i) => (
+                    <motion.div
+                      key={`${setIndex}-${i}`}
+                      className="text-2xl font-bold text-[#cbd5e1] hover:text-[#0d98ba] transition-colors duration-300 whitespace-nowrap"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {uni}
+                    </motion.div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            
+            {/* Gradient Masks */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+          </div>
         </motion.div>
       </div>
     </section>

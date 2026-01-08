@@ -17,138 +17,95 @@ interface DestinationCardProps {
     costOfLiving: string;
   };
   onExplore: (cityName: string) => void;
+  index: number;
 }
 
-const DestinationCard: React.FC<DestinationCardProps> = ({ city, onExplore }) => {
-
-  const handleExplore = () => {
-    onExplore(city.name);
-  };
-
+const DestinationCard: React.FC<DestinationCardProps> = ({ city, onExplore, index }) => {
   return (
     <motion.div
-      className="group relative bg-white rounded-xl shadow-md overflow-hidden cursor-pointer"
-      whileHover={{
-        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)",
-        transition: { duration: 0.3 }
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: [0.25, 0.46, 0.45, 0.94]
       }}
-      layout
+      className="group relative"
     >
-      {/* Image */}
-      <div className="relative h-48 overflow-hidden">
-        <motion.img
-          src={city.imageUrl}
-          alt={city.name}
-          className="w-full h-full object-cover"
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        />
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
-          initial={{ opacity: 0.8 }}
-          whileHover={{ opacity: 0.4 }}
-          transition={{ duration: 0.3 }}
-        />
-
-        {/* Flag */}
-        <motion.div
-          className="absolute top-4 right-4 text-3xl"
-          initial={{ scale: 0, rotate: -180 }}
-          whileInView={{ scale: 1, rotate: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.6,
-            delay: 0.3,
-            type: "spring",
-            stiffness: 200
-          }}
-          whileHover={{
-            scale: 1.2,
-            rotate: 10,
-            transition: { duration: 0.2 }
-          }}
-        >
-          {city.flag}
-        </motion.div>
-      </div>
-
-      {/* Content */}
-      <div className="p-5">
-        <motion.h3
-          className="text-xl font-bold text-[#0d171b] mb-1"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          {city.name}
-        </motion.h3>
-        <motion.p
-          className="text-sm text-[#4c809a] mb-3"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          {city.country}
-        </motion.p>
-
-        {/* Stats */}
-        <motion.div
-          className="flex items-center justify-between mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
-          <div>
-            <p className="text-xs text-gray-500 mb-1">Cost of Living</p>
-            <motion.p
-              className="text-lg font-bold text-[#0d98ba]"
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.4,
-                delay: 0.7,
-                type: "spring",
-                stiffness: 150
-              }}
-            >
-              {city.costOfLiving}
-            </motion.p>
-          </div>
-        </motion.div>
-
-        {/* Explore Button */}
-        <motion.button
-          onClick={handleExplore}
-          className="w-full py-2 bg-[#f8fafc] text-[#0d98ba] rounded-lg font-semibold overflow-hidden relative"
-          whileHover={{
-            backgroundColor: "#0d98ba",
-            color: "white"
-          }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.2 }}
-        >
-          <motion.span
-            className="relative z-10"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            Explore {city.name}
-          </motion.span>
-          <motion.div
-            className="absolute inset-0 bg-[#0d98ba] rounded-lg"
-            initial={{ scaleX: 0 }}
-            whileHover={{ scaleX: 1 }}
-            transition={{ duration: 0.3 }}
-            style={{ originX: 0 }}
+      <motion.div
+        className="relative h-full bg-white border border-[#e2e8f0] rounded-2xl overflow-hidden cursor-pointer shadow-sm"
+        whileHover={{
+          y: -8,
+          borderColor: "rgba(13, 152, 186, 0.3)",
+          boxShadow: "0 20px 40px -12px rgba(13, 152, 186, 0.15)",
+          transition: { duration: 0.3 }
+        }}
+        onClick={() => onExplore(city.name)}
+      >
+        {/* Image Container */}
+        <div className="relative h-52 overflow-hidden">
+          <motion.img
+            src={city.imageUrl}
+            alt={city.name}
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.6 }}
           />
-        </motion.button>
-      </div>
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+
+          {/* Explore Overlay */}
+          <motion.div
+            className="absolute inset-0 bg-[#0d98ba]/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <motion.span
+              className="px-6 py-3 bg-white text-[#0d98ba] font-semibold rounded-xl"
+              initial={{ y: 20, opacity: 0 }}
+              whileHover={{ y: 0, opacity: 1 }}
+            >
+              Explore City
+            </motion.span>
+          </motion.div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6">
+          <motion.h3
+            className="text-xl font-bold text-[#0f172a] mb-1 group-hover:text-[#0d98ba] transition-colors duration-300"
+          >
+            {city.name}
+          </motion.h3>
+          <p className="text-sm text-[#64748b] mb-4">{city.country}</p>
+
+          {/* Cost Badge */}
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs text-[#64748b] mb-1">Monthly Living Cost</p>
+              <p className="text-lg font-bold text-[#0d98ba]">{city.costOfLiving}</p>
+            </div>
+            
+            {/* Arrow Icon */}
+            <motion.div
+              className="w-10 h-10 rounded-xl bg-[#f1f5f9] flex items-center justify-center group-hover:bg-[#0d98ba] transition-colors duration-300"
+              whileHover={{ scale: 1.1 }}
+            >
+              <svg 
+                className="w-5 h-5 text-[#64748b] group-hover:text-white transition-colors duration-300" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Hover Glow */}
+        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none shadow-[0_0_40px_rgba(13,152,186,0.1)]" />
+      </motion.div>
     </motion.div>
   );
 };
@@ -159,7 +116,6 @@ const FeaturedDestinations: React.FC = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [selectedCity, setSelectedCity] = useState('');
   
-  // Get first 6 cities
   const featuredCities = citiesData.slice(0, 6);
 
   const handleCityExplore = (cityName: string) => {
@@ -187,95 +143,105 @@ const FeaturedDestinations: React.FC = () => {
         onClose={() => setShowAuthModal(false)}
         featureName={selectedCity}
       />
-      <motion.section 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
-      className="px-4 md:px-10 lg:px-40 py-16 bg-[#f8fafc]"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="flex items-center justify-between mb-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0d171b] mb-4">
-              Featured Destinations
-            </h2>
-            <p className="text-lg text-[#4c809a]">
-              Explore the most popular study abroad destinations
-            </p>
-          </div>
-          <button
-            onClick={handleViewAllClick}
-            className="hidden md:block px-6 py-3 border-2 border-[#0d98ba] text-[#0d98ba] rounded-lg font-semibold hover:bg-[#0d98ba] hover:text-white transition-colors"
-          >
-            View All Cities
-          </button>
-        </div>
-
-        {/* Destinations Grid */}
+      
+      <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-grid opacity-20" />
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.15,
-                delayChildren: 0.2
-              }
-            }
-          }}
-        >
-          {featuredCities.map((city, index) => (
-            <motion.div
-              key={city.id}
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  y: 50,
-                  scale: 0.8,
-                  rotateX: -15
-                },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  rotateX: 0,
-                  transition: {
-                    duration: 0.8,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    type: "spring",
-                    stiffness: 100
-                  }
-                }
-              }}
-              whileHover={{
-                y: -12,
-                scale: 1.02,
-                transition: { duration: 0.3, ease: "easeOut" }
-              }}
-              className="h-full"
-            >
-              <DestinationCard city={city} onExplore={handleCityExplore} />
-            </motion.div>
-          ))}
-        </motion.div>
+          className="absolute top-1/4 left-0 w-80 h-80 rounded-full bg-[#0d98ba]/5 blur-3xl"
+          animate={{ x: [0, 30, 0], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-0 w-96 h-96 rounded-full bg-[#0d98ba]/5 blur-3xl"
+          animate={{ x: [0, -40, 0], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
 
-        {/* Mobile View All Button */}
-        <div className="md:hidden text-center mt-8">
-          <button
-            onClick={handleViewAllClick}
-            className="px-6 py-3 border-2 border-[#0d98ba] text-[#0d98ba] rounded-lg font-semibold hover:bg-[#0d98ba] hover:text-white transition-colors"
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
+          {/* Section Header */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12 lg:mb-16 gap-6">
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0d98ba]/10 border border-[#0d98ba]/20 mb-6"
+              >
+                <span className="text-sm font-medium text-[#0d98ba]">Popular Destinations</span>
+              </motion.div>
+              
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-4xl md:text-5xl font-bold text-[#0f172a] mb-4"
+              >
+                Featured{' '}
+                <span className="text-[#0d98ba]">
+                  Destinations
+                </span>
+              </motion.h2>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-lg text-[#64748b] max-w-xl"
+              >
+                Explore the most popular study abroad destinations chosen by thousands of students
+              </motion.p>
+            </div>
+            
+            <motion.button
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              onClick={handleViewAllClick}
+              className="hidden lg:flex items-center gap-2 px-6 py-3 border-2 border-[#0d98ba] text-[#0d98ba] rounded-xl font-semibold hover:bg-[#0d98ba] hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              View All Cities
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </motion.button>
+          </div>
+
+          {/* Destinations Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {featuredCities.map((city, index) => (
+              <DestinationCard 
+                key={city.id} 
+                city={city} 
+                onExplore={handleCityExplore}
+                index={index}
+              />
+            ))}
+          </div>
+
+          {/* Mobile View All Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="lg:hidden text-center mt-10"
           >
-            View All Cities
-          </button>
+            <button
+              onClick={handleViewAllClick}
+              className="px-6 py-3 border-2 border-[#0d98ba] text-[#0d98ba] rounded-xl font-semibold hover:bg-[#0d98ba] hover:text-white transition-all duration-300"
+            >
+              View All Cities
+            </button>
+          </motion.div>
         </div>
-      </div>
-    </motion.section>
+      </section>
     </>
   );
 };
