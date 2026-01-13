@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className={user ? "pt-[65px]" : ""}>
+      <main className={user ? "pt-[80px]" : ""}>
         <Hero />
         <HowItWorks />
         <FeaturedDestinations />
