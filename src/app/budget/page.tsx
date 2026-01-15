@@ -2,7 +2,7 @@
 
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface BudgetData {
   monthlyIncome: number;
@@ -30,6 +30,12 @@ export default function Budget() {
     customExpenses: [],
   });
 
+  // Modal state for adding custom expense
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newExpenseName, setNewExpenseName] = useState('');
+  const [newExpenseAmount, setNewExpenseAmount] = useState('');
+  const nameInputRef = useRef<HTMLInputElement>(null);
+
   const totalExpenses = budget.tuitionFees + budget.rent + budget.food + budget.transport + budget.leisure + 
     budget.customExpenses.reduce((sum, exp) => sum + exp.amount, 0);
   
@@ -41,14 +47,50 @@ export default function Budget() {
     setBudget({ ...budget, [field]: numValue });
   };
 
-  const addCustomExpense = () => {
-    const name = prompt('Enter expense name:');
-    if (name) {
-      const amount = parseFloat(prompt('Enter amount:') || '0');
+  // Focus name input when modal opens
+  useEffect(() => {
+    if (isModalOpen && nameInputRef.current) {
+      nameInputRef.current.focus();
+    }
+  }, [isModalOpen]);
+
+  // Handle escape key to close modal
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isModalOpen) {
+        closeModal();
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isModalOpen]);
+
+  const openModal = () => {
+    setNewExpenseName('');
+    setNewExpenseAmount('');
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setNewExpenseName('');
+    setNewExpenseAmount('');
+  };
+
+  const handleAddExpense = () => {
+    if (newExpenseName.trim()) {
+      const amount = parseFloat(newExpenseAmount) || 0;
       setBudget({
         ...budget,
-        customExpenses: [...budget.customExpenses, { id: Date.now().toString(), name, amount }],
+        customExpenses: [...budget.customExpenses, { id: Date.now().toString(), name: newExpenseName.trim(), amount }],
       });
+      closeModal();
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && newExpenseName.trim()) {
+      handleAddExpense();
     }
   };
 
@@ -286,7 +328,7 @@ export default function Budget() {
                   ))}
 
                   <button
-                    onClick={addCustomExpense}
+                    onClick={openModal}
                     className="flex items-center justify-center mt-7 gap-3 rounded-xl border-2 border-dashed border-gray-300 h-14 text-gray-600 hover:bg-[#0d98ba]/5 hover:border-[#0d98ba] transition-all hover:scale-[1.02] group"
                   >
                     <span className="text-2xl group-hover:scale-110 transition-transform">+</span>
@@ -446,6 +488,118 @@ export default function Budget() {
         </div>
       </main>
       <Footer />
+
+      {/* Custom Expense Modal */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-fade-in" />
+          
+          {/* Modal */}
+          <div 
+            className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700 transition-all"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+
+            {/* Header */}
+            <div className="mb-6">
+              <h3 className="text-xl font-bold text-[#0d171b]">Add Custom Expense</h3>
+              <p className="text-sm text-gray-500 mt-1">Create a new expense category for your budget</p>
+            </div>
+
+            {/* Form */}
+            <div className="flex flex-col gap-4">
+              {/* Expense Name */}
+              <div className="flex flex-col gap-2">
+                <label htmlFor="expense-name" className="text-sm font-semibold text-[#0d171b]">
+                  Expense Name
+                </label>
+                <input
+                  ref={nameInputRef}
+                  id="expense-name"
+                  type="text"
+                  placeholder="e.g., Gym Membership, Phone Bill"
+                  className="w-full rounded-xl text-[#0d171b] focus:outline-0 focus:ring-2 focus:ring-[#0d98ba] focus:ring-offset-2 border-2 border-gray-200 bg-white focus:border-[#0d98ba] h-12 px-4 text-base transition-all hover:border-gray-300"
+                  value={newExpenseName}
+                  onChange={(e) => setNewExpenseName(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                />
+              </div>
+
+              {/* Expense Amount */}
+              <div className="flex flex-col gap-2">
+                <label htmlFor="expense-amount" className="text-sm font-semibold text-[#0d171b]">
+                  Monthly Amount
+                </label>
+                <div className="relative">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">$</span>
+                  <input
+                    id="expense-amount"
+                    type="number"
+                    placeholder="0"
+                    className="w-full rounded-xl text-[#0d171b] focus:outline-0 focus:ring-2 focus:ring-[#0d98ba] focus:ring-offset-2 border-2 border-gray-200 bg-white focus:border-[#0d98ba] h-12 pl-8 pr-4 text-base transition-all hover:border-gray-300"
+                    value={newExpenseAmount}
+                    onChange={(e) => setNewExpenseAmount(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3 mt-6">
+              <button
+                onClick={closeModal}
+                className="flex-1 h-12 rounded-xl border-2 border-gray-200 text-gray-600 font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleAddExpense}
+                disabled={!newExpenseName.trim()}
+                className="flex-1 h-12 rounded-xl bg-[#0d98ba] text-white font-semibold shadow-lg hover:shadow-xl hover:bg-[#0b889f] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-lg disabled:hover:bg-[#0d98ba]"
+              >
+                Add Expense
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes scale-in {
+          from { 
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to { 
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.2s ease-out;
+        }
+        .animate-scale-in {
+          animation: scale-in 0.2s ease-out;
+        }
+      `}</style>
     </>
   );
 }

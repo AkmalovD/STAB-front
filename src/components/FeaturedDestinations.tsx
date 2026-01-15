@@ -52,22 +52,6 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ city, onExplore, inde
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.6 }}
           />
-          
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
-
-          {/* Explore Overlay */}
-          <motion.div
-            className="absolute inset-0 bg-[#0d98ba]/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          >
-            <motion.span
-              className="px-6 py-3 bg-white text-[#0d98ba] font-semibold rounded-xl"
-              initial={{ y: 20, opacity: 0 }}
-              whileHover={{ y: 0, opacity: 1 }}
-            >
-              Explore City
-            </motion.span>
-          </motion.div>
         </div>
 
         {/* Content */}
