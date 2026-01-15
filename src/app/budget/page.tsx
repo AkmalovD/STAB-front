@@ -2,7 +2,8 @@
 
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import { useState, useEffect, useRef } from 'react';
+import { ChevronDown, DollarSign, Lightbulb, PieChart, Plus, RotateCcw, TrendingUp, Wallet, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 interface BudgetData {
   monthlyIncome: number;
@@ -123,7 +124,7 @@ export default function Budget() {
   return (
     <>
       <Header />
-      <main className="flex-1 px-4 md:px-10 lg:px-40 py-10 mt-16 min-h-screen">
+      <main className="flex-1 px-4 md:px-10 lg:px-40 py-10 mt-16 min-h-screen bg-[#f8fafc]">
         <div className="layout-content-container mx-auto flex max-w-7xl flex-col gap-8">
           {/* Header Section */}
           <div className="flex flex-wrap justify-between gap-4 items-center">
@@ -140,15 +141,15 @@ export default function Budget() {
                 Currency:
               </label>
               <select
-                className="form-select min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d171b] focus:outline-0 focus:ring-2 focus:ring-[#0d98ba] border border-[#cfe3e7] bg-white focus:border-[#0d98ba] h-10 text-sm px-3"
+                className="form-select min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d171b] focus:outline-0 focus:ring-2 focus:ring-[#0d98ba] border-2 border-gray-200 bg-white focus:border-[#0d98ba] h-12 text-sm px-4 font-medium transition-all hover:border-gray-300"
                 id="currency"
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value)}
               >
                 <option>USD ($)</option>
-                <option>EUR (€)</option>
-                <option>GBP (£)</option>
-                <option>JPY (¥)</option>
+                <option>EUR</option>
+                <option>GBP</option>
+                <option>JPY</option>
               </select>
             </div>
           </div>
@@ -159,6 +160,9 @@ export default function Budget() {
               {/* Income & Savings Card */}
               <div className="bg-white rounded-2xl shadow-lg border border-[#0d98ba]/20 p-8 hover:shadow-xl transition-shadow">
                 <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center">
+                    <Wallet className="w-5 h-5 text-[#0d98ba]" />
+                  </div>
                   <h2 className="text-[#0d171b] text-2xl font-bold">
                     Income & Savings
                   </h2>
@@ -215,6 +219,9 @@ export default function Budget() {
               {/* Monthly Expenses Card */}
               <div className="bg-white rounded-2xl shadow-lg border border-[#0d98ba]/20 p-8 hover:shadow-xl transition-shadow">
                 <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center">
+                    <DollarSign className="w-5 h-5 text-[#0d98ba]" />
+                  </div>
                   <h2 className="text-[#0d171b] text-2xl font-bold">
                     Monthly Expenses
                   </h2>
@@ -319,9 +326,9 @@ export default function Budget() {
                         </div>
                         <button
                           onClick={() => removeCustomExpense(expense.id)}
-                          className="w-14 h-14 rounded-xl bg-gray-100 text-gray-600 hover:bg-gray-200 font-bold text-xl transition-all hover:scale-105"
+                          className="w-14 h-14 rounded-xl bg-gray-100 text-gray-600 hover:bg-gray-200 flex items-center justify-center transition-all hover:scale-105"
                         >
-                          ✕
+                          <X className="w-5 h-5" />
                         </button>
                       </div>
                     </div>
@@ -331,40 +338,47 @@ export default function Budget() {
                     onClick={openModal}
                     className="flex items-center justify-center mt-7 gap-3 rounded-xl border-2 border-dashed border-gray-300 h-14 text-gray-600 hover:bg-[#0d98ba]/5 hover:border-[#0d98ba] transition-all hover:scale-[1.02] group"
                   >
-                    <span className="text-2xl group-hover:scale-110 transition-transform">+</span>
+                    <Plus className="w-5 h-5 group-hover:scale-110 transition-transform" />
                     <span className="text-sm font-semibold">Add Custom Expense</span>
                   </button>
                 </div>
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <button className="flex-1 min-w-[160px] sm:flex-none cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-[#0d98ba] text-white text-base font-bold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex gap-2">
+                <button className="flex-1 min-w-[160px] sm:flex-none cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-[#0d98ba] text-white text-base font-bold shadow-lg hover:shadow-xl hover:bg-[#0b889f] transition-all flex gap-2">
+                  <TrendingUp className="w-5 h-5" />
                   <span className="truncate">Update Budget</span>
                 </button>
                 <button
                   onClick={handleReset}
-                  className="flex-1 min-w-[160px] sm:flex-none cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-white text-[#0d171b] text-base font-bold hover:bg-gray-50 transition-all hover:scale-[1.02] flex gap-2 border-2 border-gray-300"
+                  className="flex-1 min-w-[160px] sm:flex-none cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-white text-[#0d171b] text-base font-bold hover:bg-gray-50 transition-all flex gap-2 border-2 border-gray-200"
                 >
+                  <RotateCcw className="w-5 h-5" />
                   <span className="truncate">Reset</span>
                 </button>
               </div>
             </div>
 
             {/* Right Column - Overview */}
-            <div className="lg:col-span-2 flex flex-col gap-8">
+            <div className="lg:col-span-2 flex flex-col gap-6">
               {/* Financial Overview Card */}
-              <div className="bg-white rounded-xl shadow-sm border border-black/5 p-6">
-                <h2 className="text-[#0d171b] text-2xl font-bold mb-6">
-                  Financial Overview
-                </h2>
+              <div className="bg-white rounded-2xl shadow-lg border border-[#0d98ba]/20 p-6 hover:shadow-xl transition-shadow">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center">
+                    <PieChart className="w-5 h-5 text-[#0d98ba]" />
+                  </div>
+                  <h2 className="text-[#0d171b] text-2xl font-bold">
+                    Financial Overview
+                  </h2>
+                </div>
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="flex flex-col gap-1 p-4 rounded-lg bg-[#0d98ba]/10">
+                  <div className="flex flex-col gap-1 p-4 rounded-xl bg-[#0d98ba]/10 border border-[#0d98ba]/20">
                     <p className="text-sm text-[#0d98ba] font-medium">Total Income</p>
                     <p className="text-2xl font-bold text-[#0d171b]">
                       ${budget.monthlyIncome.toLocaleString()}/mo
                     </p>
                   </div>
-                  <div className="flex flex-col gap-1 p-4 rounded-lg bg-gray-100">
+                  <div className="flex flex-col gap-1 p-4 rounded-xl bg-gray-50 border border-gray-200">
                     <p className="text-sm text-gray-600 font-medium">Total Expenses</p>
                     <p className="text-2xl font-bold text-[#0d171b]">
                       ${totalExpenses.toLocaleString()}/mo
@@ -374,10 +388,10 @@ export default function Budget() {
 
                 {/* Balance Display */}
                 <div
-                  className={`flex flex-col gap-1 p-4 rounded-lg border mb-6 ${
+                  className={`flex flex-col gap-1 p-4 rounded-xl border-2 mb-6 ${
                     isPositive
                       ? 'bg-[#0d98ba]/5 border-[#0d98ba]'
-                      : 'bg-gray-50 border-gray-400'
+                      : 'bg-gray-50 border-gray-300'
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -406,7 +420,7 @@ export default function Budget() {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                          className="bg-[#0d98ba] h-2 rounded-full"
+                          className="bg-[#0d98ba] h-2 rounded-full transition-all"
                           style={{ width: `${getExpensePercentage(budget.tuitionFees)}%` }}
                         ></div>
                       </div>
@@ -421,7 +435,7 @@ export default function Budget() {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                          className="bg-[#0d98ba] h-2 rounded-full"
+                          className="bg-[#0d98ba] h-2 rounded-full transition-all"
                           style={{ width: `${getExpensePercentage(budget.rent)}%` }}
                         ></div>
                       </div>
@@ -436,47 +450,97 @@ export default function Budget() {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                          className="bg-[#0d98ba] h-2 rounded-full"
+                          className="bg-[#0d98ba] h-2 rounded-full transition-all"
                           style={{ width: `${getExpensePercentage(budget.food)}%` }}
                         ></div>
                       </div>
                     </>
                   )}
+
+                  {budget.transport > 0 && (
+                    <>
+                      <div className="flex justify-between items-center text-sm pt-2">
+                        <p className="text-gray-600">Transport</p>
+                        <p className="font-medium text-[#0d171b]">${budget.transport.toLocaleString()}</p>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className="bg-[#0d98ba] h-2 rounded-full transition-all"
+                          style={{ width: `${getExpensePercentage(budget.transport)}%` }}
+                        ></div>
+                      </div>
+                    </>
+                  )}
+
+                  {budget.leisure > 0 && (
+                    <>
+                      <div className="flex justify-between items-center text-sm pt-2">
+                        <p className="text-gray-600">Leisure & Entertainment</p>
+                        <p className="font-medium text-[#0d171b]">${budget.leisure.toLocaleString()}</p>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className="bg-[#0d98ba] h-2 rounded-full transition-all"
+                          style={{ width: `${getExpensePercentage(budget.leisure)}%` }}
+                        ></div>
+                      </div>
+                    </>
+                  )}
+
+                  {budget.customExpenses.map((expense) => expense.amount > 0 && (
+                    <div key={expense.id}>
+                      <div className="flex justify-between items-center text-sm pt-2">
+                        <p className="text-gray-600">{expense.name}</p>
+                        <p className="font-medium text-[#0d171b]">${expense.amount.toLocaleString()}</p>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
+                        <div
+                          className="bg-[#0d98ba] h-2 rounded-full transition-all"
+                          style={{ width: `${getExpensePercentage(expense.amount)}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
               {/* Savings Tips */}
-              <div className="bg-white rounded-xl shadow-sm border border-black/5 p-6">
-                <h2 className="text-[#0d171b] text-2xl font-bold mb-4">
-                  Savings Tips
-                </h2>
+              <div className="bg-white rounded-2xl shadow-lg border border-[#0d98ba]/20 p-6 hover:shadow-xl transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-[#0d98ba]/10 flex items-center justify-center">
+                    <Lightbulb className="w-5 h-5 text-[#0d98ba]" />
+                  </div>
+                  <h2 className="text-[#0d171b] text-2xl font-bold">
+                    Savings Tips
+                  </h2>
+                </div>
                 <div className="flex flex-col gap-3">
                   <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg p-3 bg-gray-50 hover:bg-gray-100">
+                    <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl p-4 bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-all">
                       <h3 className="font-medium text-sm text-[#0d171b]">Saving on Groceries</h3>
-                      <span className="transition-transform duration-300 group-open:rotate-180">▼</span>
+                      <ChevronDown className="w-5 h-5 text-gray-500 transition-transform duration-300 group-open:rotate-180" />
                     </summary>
-                    <p className="mt-2 p-3 text-sm text-gray-600">
+                    <p className="mt-2 p-4 text-sm text-gray-600 bg-gray-50 rounded-xl border border-gray-200">
                       Look for student discounts at local supermarkets, buy generic brands, and plan your meals
                       for the week to avoid impulse buys.
                     </p>
                   </details>
                   <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg p-3 bg-gray-50 hover:bg-gray-100">
+                    <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl p-4 bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-all">
                       <h3 className="font-medium text-sm text-[#0d171b]">Student Discounts</h3>
-                      <span className="transition-transform duration-300 group-open:rotate-180">▼</span>
+                      <ChevronDown className="w-5 h-5 text-gray-500 transition-transform duration-300 group-open:rotate-180" />
                     </summary>
-                    <p className="mt-2 p-3 text-sm text-gray-600">
+                    <p className="mt-2 p-4 text-sm text-gray-600 bg-gray-50 rounded-xl border border-gray-200">
                       Always carry your student ID! Many restaurants, shops, museums, and public transport systems
                       offer significant discounts for students.
                     </p>
                   </details>
                   <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg p-3 bg-gray-50 hover:bg-gray-100">
+                    <summary className="flex cursor-pointer list-none items-center justify-between rounded-xl p-4 bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-all">
                       <h3 className="font-medium text-sm text-[#0d171b]">Managing Bank Fees</h3>
-                      <span className="transition-transform duration-300 group-open:rotate-180">▼</span>
+                      <ChevronDown className="w-5 h-5 text-gray-500 transition-transform duration-300 group-open:rotate-180" />
                     </summary>
-                    <p className="mt-2 p-3 text-sm text-gray-600">
+                    <p className="mt-2 p-4 text-sm text-gray-600 bg-gray-50 rounded-xl border border-gray-200">
                       Research banks that offer student accounts with low or no international transaction fees.
                       Using a local bank in your host country can often be the cheapest option.
                     </p>
@@ -508,9 +572,7 @@ export default function Budget() {
               onClick={closeModal}
               className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700 transition-all"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
+              <X className="w-5 h-5" />
             </button>
 
             {/* Header */}
