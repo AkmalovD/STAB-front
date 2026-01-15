@@ -1,5 +1,5 @@
-import React from 'react';
 import { City } from '@/types';
+import React from 'react';
 
 interface CostBreakdownProps {
   cities: City[];
@@ -96,18 +96,62 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ cities }) => {
     ].join(' ');
   };
 
+  // Dynamic sizing based on number of cities
+  const getCardStyles = () => {
+    const cityCount = cities.length;
+    if (cityCount >= 4) {
+      return {
+        cardWidth: 'w-[220px] md:w-[240px]',
+        chartSize: 'w-40 h-40 md:w-44 md:h-44',
+        padding: 'p-4 md:p-5',
+        gap: 'gap-3 md:gap-4',
+        totalText: 'text-xl md:text-2xl',
+        cityNameText: 'text-base md:text-lg',
+        legendText: 'text-xs',
+        legendValueText: 'text-xs md:text-sm'
+      };
+    } else if (cityCount === 3) {
+      return {
+        cardWidth: 'w-[240px] md:w-[280px]',
+        chartSize: 'w-44 h-44 md:w-52 md:h-52',
+        padding: 'p-5 md:p-6',
+        gap: 'gap-4 md:gap-6',
+        totalText: 'text-2xl md:text-3xl',
+        cityNameText: 'text-lg',
+        legendText: 'text-xs md:text-sm',
+        legendValueText: 'text-sm md:text-base'
+      };
+    } else {
+      return {
+        cardWidth: 'w-[280px] md:w-[320px]',
+        chartSize: 'w-48 h-48 md:w-56 md:h-56',
+        padding: 'p-6 md:p-7',
+        gap: 'gap-6 md:gap-8',
+        totalText: 'text-2xl md:text-3xl',
+        cityNameText: 'text-lg',
+        legendText: 'text-xs md:text-sm',
+        legendValueText: 'text-sm md:text-base'
+      };
+    }
+  };
+
+  const styles = getCardStyles();
+
   return (
-    <div className="flex justify-center w-full overflow-x-auto">
-      <div className="flex flex-nowrap justify-center gap-4 md:gap-6 w-full max-w-full px-4">
+    <div className="flex justify-center w-full overflow-x-auto py-4">
+      <div className={`flex flex-nowrap justify-center ${styles.gap} w-full max-w-full px-4`}>
         {cities.map((city, cityIndex) => {
           const total = getCityTotal(city);
           const breakdownData = getCityBreakdownData(city, cityIndex);
           const palette = colorPalettes[cityIndex % colorPalettes.length];
           
           return (
-            <div key={city.id} className="flex flex-col items-center flex-shrink-0 w-[240px] md:w-[260px] bg-white rounded-2xl p-4 md:p-5">
+            <div 
+              key={city.id} 
+              className={`flex flex-col items-center flex-shrink-0 ${styles.cardWidth} bg-white rounded-2xl ${styles.padding} shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-gray-200`}
+            >
               {/* Circle Chart */}
-              <div className="relative w-48 h-48 md:w-56 md:h-56 mb-6">
+              <div className={`relative ${styles.chartSize} mb-6`}>
                 <svg viewBox="0 0 200 200" className="w-full h-full transform -rotate-0">
                   {breakdownData.map((item, idx) => (
                     <path
@@ -131,7 +175,7 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ cities }) => {
                 
                 {/* Total in center */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                  <div className="text-2xl md:text-3xl font-bold" style={{ color: palette.primary }}>
+                  <div className={`${styles.totalText} font-bold`} style={{ color: palette.primary }}>
                     ${total.toLocaleString()}
                   </div>
                   <div className="text-xs mt-1 font-medium" style={{ color: palette.secondary }}>per month</div>
@@ -140,7 +184,7 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ cities }) => {
 
               {/* City Name */}
               <div className="text-center mb-4">
-                <h4 className="font-bold text-[#0d171b] text-lg mb-1">{city.name}</h4>
+                <h4 className={`font-bold text-[#0d171b] ${styles.cityNameText} mb-1`}>{city.name}</h4>
                 <p className="text-xs font-medium" style={{ color: palette.secondary }}>{city.country}</p>
               </div>
 
@@ -149,17 +193,17 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ cities }) => {
                 {breakdownData.map((item, idx) => (
                   <div 
                     key={idx} 
-                    className="flex items-center justify-between text-xs md:text-sm p-1.5 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                    className={`flex items-center justify-between ${styles.legendText} p-1.5 rounded-lg hover:bg-gray-50 transition-colors duration-200`}
                   >
                     <div className="flex items-center gap-2">
                       <div 
-                        className="w-3 h-3 md:w-4 md:h-4 rounded-full flex-shrink-0" 
+                        className="w-3 h-3 rounded-full flex-shrink-0" 
                         style={{ backgroundColor: item.color }}
                       />
                       <span className="font-medium" style={{ color: '#374151' }}>{item.label}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-[#0d171b] text-sm md:text-base">${item.value.toLocaleString()}</span>
+                      <span className={`font-bold text-[#0d171b] ${styles.legendValueText}`}>${item.value.toLocaleString()}</span>
                       <span className="text-xs font-medium px-1.5 py-0.5 rounded-full bg-gray-100" style={{ color: palette.secondary }}>
                         {item.percentage.toFixed(0)}%
                       </span>
